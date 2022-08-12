@@ -1,6 +1,11 @@
-import { register } from "../../services/authService";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import AuthContext from "../../context/authContext";
 
 const Register = () => {
+    const { register } = useContext(AuthContext);
+    const navigate = useNavigate();
+
     const registerHandler = async(e) => {
         e.preventDefault();
 
@@ -9,6 +14,7 @@ const Register = () => {
         const email = formData.get('email');
         const password = formData.get('password');
         const rePassword = formData.get('repeat-password');
+
             if(!username || !email || !password) {
                 throw new Error('All fields must be filled!');
             }
@@ -22,6 +28,7 @@ const Register = () => {
                 if(response.status === 'err') {
                     throw new Error('Connot register!');
                 }
+                navigate('/');
             }
             
 
