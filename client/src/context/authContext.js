@@ -27,11 +27,26 @@ const AuthContextProvider = ({ children }) => {
             console.log(err);
             return 'err';
         }
+    }
 
+    const login = async ({ username, password }) => {
+        try {
+            const response = authService.login({ username, password });
+            if (response === 'ok') {
+                setUserInfo(user);
+            }
+            else {
+                throw new Error('Unsuccessfull registry');
+            }
+        }
+        catch (err) {
+            console.log(err);
+            return 'err';
+        }
     }
     return (
-        <AuthContext.Provider value={{ userInfo, register }}>
-        {children}
+        <AuthContext.Provider value={{ userInfo, register, login }}>
+            {children}
         </AuthContext.Provider>
     )
 }
