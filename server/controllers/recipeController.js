@@ -5,7 +5,7 @@ router.get('', async (req, res) => {
     try {
         const recipes = await recipeService.getAll();
         if(recipes.status === 'ok') {
-            res.json(recipes.recipes);
+            res.json(recipes);
         }
         
     }
