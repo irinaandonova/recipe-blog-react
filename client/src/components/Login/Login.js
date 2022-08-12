@@ -1,7 +1,8 @@
-import { createContext } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../../context/authContext";
 const Login = () => {
-    const { login } = useContext(login);
+    const { login } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const loginHandler = async (e) => {
@@ -20,15 +21,11 @@ const Login = () => {
     return (
         <section className="auth-section">
             <form className="auth-form">
-                <label htlmFor="username">Username:</label>
+                <label htmlFor="username">Username:</label>
                 <input name="username" type="string" />
-                <label htlmFor="email">Email:</label>
-                <input name="email" type="email" />
-                <label htlmFor="password">Password:</label>
+                <label htmlFor="password">Password:</label>
                 <input name="password" />
-                <label htlmFor="repeat-password">Repeat password:</label>
-                <input name="reapeat-password" />
-                <button onSubmit={loginHandler}>Register</button>
+                <button onSubmit={loginHandler}>Login</button>
             </form>
         </section>
     )

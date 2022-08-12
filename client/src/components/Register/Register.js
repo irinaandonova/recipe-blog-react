@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AuthContext from "../../context/authContext";
 
 const Register = () => {
-    const { register } = useContext(AuthContext);
+    const { register } = useContext(AuthContext)
     const navigate = useNavigate();
 
     const registerHandler = async(e) => {
@@ -36,13 +36,13 @@ const Register = () => {
     return (
         <section className="auth-section">
             <form className="auth-form">
-                <label htlmFor="username">Username:</label>
+                <label htmlFor="username">Username:</label>
                 <input name="username" type="string" />
-                <label htlmFor="email">Email:</label>
+                <label htmlFor="email">Email:</label>
                 <input name="email" type="email" />
-                <label htlmFor="password">Password:</label>
+                <label htmlFor="password">Password:</label>
                 <input name="password" />
-                <label htlmFor="repeat-password">Repeat password:</label>
+                <label htmlFor="repeat-password">Repeat password:</label>
                 <input name="reapeat-password" />
                 <button onSubmit={registerHandler}>Register</button>
             </form>

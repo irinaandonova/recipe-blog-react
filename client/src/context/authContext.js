@@ -5,14 +5,10 @@ const AuthContext = createContext();
 
 const initialState = { _id: '', username: '', email: '' };
 
-const AuthContextProvider = ({ children }) => {
+export const AuthContextProvider = ({ children }) => {
     const [userInfo, setUserInfo] = useState(initialState);
 
-    /*const login = ({ user }) => {
-
-    }*/
-
-    const register = async (user) => {
+    const register = async ({ user }) => {
         try {
             const response = authService.register({ user });
 
@@ -32,8 +28,8 @@ const AuthContextProvider = ({ children }) => {
     const login = async ({ username, password }) => {
         try {
             const response = authService.login({ username, password });
-            if (response === 'ok') {
-                setUserInfo(user);
+            if (response.status === 'ok') {
+                setUserInfo(response.user);
             }
             else {
                 throw new Error('Unsuccessfull registry');
@@ -45,7 +41,7 @@ const AuthContextProvider = ({ children }) => {
         }
     }
     return (
-        <AuthContext.Provider value={{ userInfo, register, login }}>
+        <AuthContext.Provider value={{  userInfo, register,login }}>
             {children}
         </AuthContext.Provider>
     )
