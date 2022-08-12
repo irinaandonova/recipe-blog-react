@@ -8,12 +8,14 @@ const initialState = { _id: '', username: '', email: '' };
 export const AuthContextProvider = ({ children }) => {
     const [userInfo, setUserInfo] = useState(initialState);
 
-    const register = async ({ user }) => {
+    const register = async (user) => {
         try {
-            const response = authService.register({ user });
+            const response = await authService.register(user);
 
-            if (response === 'ok') {
-                setUserInfo(user);
+            if (response.status === 'ok') {
+                const newUser = response.user;
+                setUserInfo(newUser);
+                return response;
             }
             else {
                 throw new Error('Unsuccessfull registry');

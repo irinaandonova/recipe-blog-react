@@ -1,6 +1,6 @@
 const baseUrl = 'http://localhost:4000/auth';
 
-exports.register = async ({ user }) => {
+exports.register = async (user) => {
     const response = await fetch(`${baseUrl}/register`, {
         headers: {
             'Content-Type': 'application/json'
