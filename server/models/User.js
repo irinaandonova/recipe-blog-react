@@ -9,8 +9,7 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String, 
         required: true,
-        minLength: 6,
-        maxLength: 16
+        
     },
     recepes: {
         type: Array,
@@ -23,4 +22,5 @@ const userSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model('User', userSchema);
-exports.module = User;
+
+module.exports = User;
