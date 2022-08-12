@@ -1,0 +1,25 @@
+header {
+    border-bottom: 3px solid;
+    width: 95%;
+    margin-left: 28px;
+}
+nav {
+    margin-right: 20px;
+}
+.header-list {
+    display: flex;
+    justify-content: flex-end;
+}
+.header-link {
+    list-style: none;
+}
+.header-list a {
+    text-decoration: none;
+    color: black;
+    border: 2px solid;
+    padding: 6px;
+    border-right: none;
+}
+.right a{
+    border: 2px solid;
+}
