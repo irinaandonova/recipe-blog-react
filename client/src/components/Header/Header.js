@@ -20,7 +20,10 @@ const Header = () => {
                     :
                     <ul className='header-list'>
                         <li className='header-link'>
-                            <Link to="/recipes/my-recipes">My recipes</Link>
+                            <Link to="/recipe/my-recipes">My recipes</Link>
+                        </li>
+                        <li className='header-link'>
+                            <Link to="/recipe/add/info">Add recipe</Link>
                         </li>
                         <button className='logout-btn' onClick={logout}>Logout</button>
                     </ul>
