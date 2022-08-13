@@ -26,7 +26,7 @@ const AddRecipeInfo = () => {
                 <label htmlFor="name">Recipe name:</label>
                 <input name="name" type="string" />
                 <label htmlFor="portions">Portions:</label>
-                <input name="portions" type="number" />
+                <input name="portions" type="number" min={1}/>
                 <select name="category">
                     <option value="meat">Recipe with meat</option>
                     <option value="vegetarian">Vegeterian recipe</option>
