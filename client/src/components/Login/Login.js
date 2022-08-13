@@ -20,12 +20,12 @@ const Login = () => {
     }
     return (
         <section className="auth-section">
-            <form className="auth-form">
+            <form className="auth-form" onSubmit={loginHandler}>
                 <label htmlFor="username">Username:</label>
                 <input name="username" type="string" />
                 <label htmlFor="password">Password:</label>
-                <input name="password" />
-                <button onSubmit={loginHandler}>Login</button>
+                <input name="password" type="password"/>
+                <button type="submit">Login</button>
             </form>
         </section>
     )
