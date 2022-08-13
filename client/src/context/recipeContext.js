@@ -15,9 +15,10 @@ export const RecipeContextProvider = ({ children }) => {
         return;
     }
     
-    const createRecipe = async() => {
+    const createRecipe = async({recipeInfo}) => {
+        console.log(recipeInfo);
         try {
-            const response = await recipeService.createRecipe(recipeInfo);
+            const response = await recipeService.createRecipe({recipeInfo});
             if(response === 'ok') {
                 setRecipeInfo(initialState);
             }
