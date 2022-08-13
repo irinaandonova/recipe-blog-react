@@ -13,18 +13,17 @@ function App() {
   return (
     <div className="App">
       <AuthContextProvider>
-        <Header />
-        <Routes>
-          <Route path='/' element={<Dashboard />} />
-          <Route path='/auth/register' element={<Register />} />
-          <Route path='/auth/login' element={<Login />} />
-          <RecipeContextProvider>
+        <RecipeContextProvider>
+          <Header />
+          <Routes>
+            <Route path='/' element={<Dashboard />} />
+            <Route path='/auth/register' element={<Register />} />
+            <Route path='/auth/login' element={<Login />} />
             <Route path='/recipe/add/info' element={<AddRecipeInfo />} />
             <Route path='/recipe/add/ingredients' element={<AddIngredients />} />
-          </RecipeContextProvider>
-        </Routes>
+          </Routes>
+        </RecipeContextProvider>
       </AuthContextProvider>
-
     </div>
   );
 }

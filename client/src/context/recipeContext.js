@@ -29,7 +29,7 @@ export const RecipeContextProvider = ({ children }) => {
     }
     return (
         <RecipeContext.Provider value={{ recipeInfo, addRecipeInfo, addIngredient, createRecipe }}>
-            {{ children }}
+            { children }
         </RecipeContext.Provider>
     )
 }
