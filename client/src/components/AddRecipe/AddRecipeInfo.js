@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../../context/authContext";
 import RecipeContext from "../../context/recipeContext";
 
 
 const AddRecipeInfo = () => {
+    const { userInfo } = useContext(AuthContext);
     const { addRecipeInfo } = useContext(RecipeContext);
     const navigate = useNavigate();
 
@@ -15,7 +17,7 @@ const AddRecipeInfo = () => {
         const portions = formData.get('portions');
         const category = formData.get('category');
         
-        addRecipeInfo({ name, portions, category });
+        addRecipeInfo({ name, portions, category, userId: userInfo._id });
         navigate('/recipe/add/ingredients');
     }
     return (
