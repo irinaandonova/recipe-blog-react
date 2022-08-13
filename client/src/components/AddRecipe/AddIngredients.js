@@ -1,10 +1,12 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import RecipeContext from "../../context/recipeContext";
 import SingleIngredient from "./SingleIngredient";
 
 const AddIngredient = () => {
-    const { recipeInfo, addIngredient } = useContext(RecipeContext);
+    const { recipeInfo, addIngredient, createRecipe } = useContext(RecipeContext);
     const [ingredientsCount, setIngredientsCount] = useState(0);
+    const navigate = useNavigate();
     const addIngredientHandler = (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -18,6 +20,13 @@ const AddIngredient = () => {
         const newCount = ingredientsCount + 1;
         setIngredientsCount(newCount)
         formData.reset();
+    }
+
+    const createRecipeHandler = async() => {
+        const response = await createRecipe({ recipeInfo });
+        if(response === 'ok') {
+            navigate('/')
+        }
     }
     return (
         <section className="add-ingredients-section">
@@ -35,8 +44,9 @@ const AddIngredient = () => {
                     null
                 }
             </ul>
+            <button onClick={createRecipeHandler}>Create recipe</button>
         </section>
-        
+
     )
 }
 
