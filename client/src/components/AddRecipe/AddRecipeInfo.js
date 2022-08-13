@@ -9,8 +9,8 @@ const AddRecipeInfo = () => {
     const { addRecipeInfo } = useContext(RecipeContext);
     const navigate = useNavigate();
 
-    const addRecipeHandler = (e) => {
-        e.preventDeafult();
+    const addRecipeInfoHandler = (e) => {
+        e.preventDefault();
 
         const formData = new FormData(e.target);
         const name = formData.get('name');
@@ -22,7 +22,7 @@ const AddRecipeInfo = () => {
     }
     return (
         <section className="add-recipe-section">
-            <form className="add-recipe-form" onSubmit={addRecipeHandler}>
+            <form className="add-recipe-form" onSubmit={addRecipeInfoHandler}>
                 <label htmlFor="name">Recipe name:</label>
                 <input name="name" type="string" />
                 <label htmlFor="portions">Portions:</label>
@@ -32,7 +32,8 @@ const AddRecipeInfo = () => {
                     <option value="vegetarian">Vegeterian recipe</option>
                     <option value="fish">Fish and seafood recipe</option>
                     <option value="dessert">Dessert</option>
-                </select>             
+                </select>     
+                <button type="submit">Add ingredients</button>        
             </form>
         </section>
     )
