@@ -12,7 +12,7 @@ exports.getAll = async() => {
         return { status: 'err' };
     }
 }
-exports.createRecipe = (recipeInfo) => {
+exports.createRecipe = async(recipeInfo) => {
     try {
         let response = await fetch(`${baseUrl}/create`, {
             headers: {
