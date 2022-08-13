@@ -29,12 +29,14 @@ export const AuthContextProvider = ({ children }) => {
 
     const login = async ({ username, password }) => {
         try {
-            const response = authService.login({ username, password });
+            const response = await authService.login({ username, password });
             if (response.status === 'ok') {
+
                 setUserInfo(response.user);
+                return 'ok';
             }
             else {
-                throw new Error('Unsuccessfull registry');
+                throw new Error('Unsuccessfull login');
             }
         }
         catch (err) {
@@ -44,7 +46,7 @@ export const AuthContextProvider = ({ children }) => {
     }
     const logout = () => setUserInfo({});
     return (
-        <AuthContext.Provider value={{  userInfo, register, login, logout }}>
+        <AuthContext.Provider value={{ userInfo, register, login, logout }}>
             {children}
         </AuthContext.Provider>
     )
