@@ -10,10 +10,12 @@ const getAll = async() => {
         return { status: 'err', err };
     }
 }
-const addRecipe = async ({ userId, recipe }) => {
+const createRecipe = async ({ name, userId, portions, category }) => {
     try {
-        const savedRecipe = await Recipe(userId, recipe);
-        return { status: 'ok', recipe: savedRecipe };
+        const savedRecipe = await new Recipe({name, userId, portions, category});
+        await savedRecipe.save();
+
+        return { status: 'ok' };
     }
     catch (err) {
         console.log(err);
@@ -48,7 +50,7 @@ const likeRecipe = async ({ userId, recipeId }) => {
 
 const recipeService = {
     getAll,
-    addRecipe,
+    createRecipe,
     likeRecipe,
 }
 
