@@ -9,30 +9,31 @@ const recipeSchema = new mongoose.Schema({
         userId: {
             type: mongoose.Types.ObjectId,
             ref: 'User',
-            //required: true
+            required: true
         },
         ingredients: [
             {
                 name: {
                     type: String,
-                    //required: true,
+                    required: true,
                     maxLength: 15
                 },
                 metric: {
                     type: String,
-                    //required: true
+                    required: true
                 }
             }
         ],
         portion: {
-            type: Number,
-            //required: true
+            type: String,
+            required: true
         },
-        categories: {
-            type: Array
+        category: {
+            type: String
         },
         comments: {
-            type: Array
+            type: Array,
+            default: []
         },
         likes: {
             type: Array
