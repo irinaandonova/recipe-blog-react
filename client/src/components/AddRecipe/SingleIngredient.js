@@ -1,9 +1,9 @@
-const SingleIngredient = (ingredient) => {
+const SingleIngredient = ({ ingredient }) => {
     return(
-        <artice className="single-ingredient">
+        <article className="single-ingredient">
             <p>{ingredient.ingredientName}</p>
             <p>{ingredient.metric}</p>
-        </artice>
+        </article>
     )
 }
 
