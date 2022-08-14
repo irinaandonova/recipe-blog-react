@@ -1,12 +1,16 @@
-import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import RecipeContext from "../../context/recipeContext";
+import { useDispatch, useSelector } from "react-redux";
+import { addIngredient } from "../../features/recipeSlice";
 import SingleIngredient from "./SingleIngredient";
+import { createRecipe } from "../../services/recipeService";
 
 const AddIngredient = () => {
-    const { recipeInfo, addIngredient, createRecipe } = useContext(RecipeContext);
-    const [ingredientsCount, setIngredientsCount] = useState(0);
     const navigate = useNavigate();
+    const dispatch = useDispatch()
+
+    const recipeInfo = useSelector((state) => state.recipe);
+    const ingredientsArray = recipeInfo.ingredients;
+
     const addIngredientHandler = (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -16,17 +20,18 @@ const AddIngredient = () => {
             ingredientName,
             metric
         }
-        addIngredient(ingredient);
-        const newCount = ingredientsCount + 1;
-        setIngredientsCount(newCount)
-        formData.reset();
+        dispatch(addIngredient(ingredient));
     }
 
     const createRecipeHandler = async() => {
-        const response = await createRecipe({ recipeInfo });
-        if(response === 'ok') {
-            navigate('/')
-        }
+       const response = await createRecipe(recipeInfo);
+
+       if(response.status === 'ok') {
+        navigate('/recipe/my-recipes');
+       }
+       else {
+        throw new Error('Couldnot create recipe!')
+       }
     }
     return (
         <section className="add-ingredients-section">
@@ -38,8 +43,8 @@ const AddIngredient = () => {
                 <button type="submit">Add ingredient</button>
             </form>
             <ul>
-                {ingredientsCount > 0 ?
-                    recipeInfo.ingredients.map((x, index) => <SingleIngredient ingredient={x} key={index} />)
+                { ingredientsArray.length > 0 ?
+                    ingredientsArray.map(x => <SingleIngredient ingredient={x}/>  )                     
                     :
                     null
                 }
