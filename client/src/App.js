@@ -6,14 +6,12 @@ import Login from './components/Login/Login';
 import { AuthContextProvider } from './context/authContext';
 import Header from './components/Header/Header';
 import AddRecipeInfo from './components/AddRecipe/AddRecipeInfo';
-import { RecipeContextProvider } from './context/recipeContext';
 import AddIngredients from './components/AddRecipe/AddIngredients';
 
 function App() {
   return (
     <div className="App">
       <AuthContextProvider>
-        <RecipeContextProvider>
           <Header />
           <Routes>
             <Route path='/' element={<Dashboard />} />
@@ -22,7 +20,6 @@ function App() {
             <Route path='/recipe/add/info' element={<AddRecipeInfo />} />
             <Route path='/recipe/add/ingredients' element={<AddIngredients />} />
           </Routes>
-        </RecipeContextProvider>
       </AuthContextProvider>
     </div>
   );
