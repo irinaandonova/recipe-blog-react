@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import AuthContext from "../../context/authContext";
-import RecipeContext from "../../context/recipeContext";
+import { addRecipeInfo } from "../../features/recipeSlice";
 
 
 const AddRecipeInfo = () => {
     const { userInfo } = useContext(AuthContext);
-    const { addRecipeInfo } = useContext(RecipeContext);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const addRecipeInfoHandler = (e) => {
         e.preventDefault();
@@ -16,8 +17,7 @@ const AddRecipeInfo = () => {
         const name = formData.get('name');
         const portions = formData.get('portions');
         const category = formData.get('category');
-        
-        addRecipeInfo({ name, portions, category, userId: userInfo._id });
+        dispatch(addRecipeInfo({ name, portions, userId: userInfo._id, category }));
         navigate('/recipe/add/ingredients');
     }
     return (
