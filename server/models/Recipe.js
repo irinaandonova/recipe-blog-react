@@ -24,17 +24,36 @@ const recipeSchema = new mongoose.Schema({
                 }
             }
         ],
-        portion: {
+        portions: {
             type: String,
             required: true
         },
         category: {
             type: String
         },
-        comments: {
-            type: Array,
-            default: []
+        image: {
+            type: String
         },
+        instructions: {
+            type: String,
+            required: true,
+            maxLength: 200
+        },
+        comments: [
+            {
+                userId: {
+                    type: mongoose.Types.ObjectId,
+                    required: true,
+                    ref: 'User'
+                },
+                text: {
+                    type: String,
+                    minlength: 1,
+                    maxlength: 50
+                }
+
+            }
+        ],
         likes: {
             type: Array
         }
