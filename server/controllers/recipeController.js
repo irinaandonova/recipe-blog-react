@@ -15,10 +15,10 @@ router.get('', async (req, res) => {
     }
 });
 router.post('/create', async (req, res) => {
-    const { name, userId, portions, category } = req.body.recipeInfo;
+    const { name, userId, portions, image, category, instructions } = req.body.recipeInfo;
     console.log(req.body);
     try {
-        const result = await recipeService.createRecipe({ name, userId, portions, category });
+        const result = await recipeService.createRecipe({ name, userId, portions, image, category, instructions });
         res.json(result);
     }
     catch (err) {
