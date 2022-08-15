@@ -1,0 +1,18 @@
+.recipes-section {
+    margin: 25px;
+    display: flex;
+}
+.dashboard-recipe-image {
+    max-width: 200px;
+    max-height: 150px;
+    border: 2px solid black;
+}
+.recipe {
+    text-align: center;
+    border: 4px solid;
+    padding: 15px;
+    padding-bottom: 0px;
+}
+.recipe-name {
+    font-weight: bold;
+}
