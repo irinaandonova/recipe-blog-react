@@ -1,5 +1,5 @@
 .recipes-section {
-    margin: 25px;
+    margin: 50px;
     display: flex;
 }
 .dashboard-recipe-image {
@@ -15,4 +15,7 @@
 }
 .recipe-name {
     font-weight: bold;
+}
+.no-recipes-message {
+    text-align: center;
 }

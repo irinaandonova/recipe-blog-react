@@ -25,7 +25,9 @@ const Header = () => {
                         <li className='header-link'>
                             <Link to="/recipe/add/info">Add recipe</Link>
                         </li>
-                        <button className='logout-btn' onClick={logout}>Logout</button>
+                        <li className='header-link right'>
+                            <Link to="#" className='logout-btn' onClick={logout}>Logout</Link>
+                        </li>
                     </ul>
                 }
             </nav>

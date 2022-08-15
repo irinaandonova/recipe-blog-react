@@ -36,7 +36,7 @@ const AddRecipeInfo = () => {
                     <option value="fish">Fish and seafood recipe</option>
                     <option value="dessert">Dessert</option>
                 </select>
-                <button type="submit">Add ingredients</button>
+                <button type="submit" className="add-ngredient-btn">Add ingredients</button>
             </form>
         </section>
     )

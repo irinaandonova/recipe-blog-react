@@ -16,7 +16,7 @@ const Dashboard = () => {
                 recipes.length > 0 ?
                     recipes.map(r => <Recipe recipe={r} key={r._id} />)
                     :
-                    <p>No recipes yet!</p>
+                    <p className="no-recipes-message">No recipes yet!</p>
             }
         </section>
     )
