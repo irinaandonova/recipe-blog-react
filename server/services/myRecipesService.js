@@ -1,5 +1,17 @@
 const Recipe = require("../models/Recipe.js");
 
+const getAll = async (_id) => {
+    try {
+        await Recipe.findAll({ userId: _id });
+
+        return { status: 'ok' };
+
+    }
+    catch (err) {
+        console.log(err);
+        return { status: 'err', err };
+    }
+}
 const editRecipe = async ({ userId, recipe }) => {
     try {
         const databaseRecipe = await Recipe.findByIdAndUpdate({ _id: recipe._id }, recipe);
@@ -29,6 +41,7 @@ const deleteRecipe = async (_id) => {
 }
 
 const myRecipesService = {
+    getAll,
     editRecipe,
     deleteRecipe
 }

@@ -1,6 +1,17 @@
 const router = require('express').Router();
 const myRecipesService = require("../services/myRecipesService.js");
 
+router.get('/:userId', (req, res) => {
+    const { userId } = req.params.userId;
+    try {
+        const result = await myRecipesService.getAll(userId);
+        res.json(result);
+    }
+    catch (err) {
+        console.log(err);
+        res.json({ status: 'err', err });
+    }
+});
 router.post('/edit', async(req, res) => {
     const { userId, recipe } = req.body;
 
