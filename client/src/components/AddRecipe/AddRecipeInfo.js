@@ -17,7 +17,8 @@ const AddRecipeInfo = () => {
         const name = formData.get('name');
         const portions = formData.get('portions');
         const category = formData.get('category');
-        dispatch(addRecipeInfo({ name, portions, userId: userInfo._id, category }));
+        const image = formData.get('image');
+        dispatch(addRecipeInfo({ name, portions, userId: userInfo._id, category, username: userInfo.username, image }));
         navigate('/recipe/add/ingredients');
     }
     return (
@@ -33,6 +34,8 @@ const AddRecipeInfo = () => {
                     <option value="fish">Fish and seafood recipe</option>
                     <option value="dessert">Dessert</option>
                 </select>     
+                <label htmlFor="image">Image:</label>
+                <input name="image" type="string" />
                 <button type="submit">Add ingredients</button>        
             </form>
         </section>

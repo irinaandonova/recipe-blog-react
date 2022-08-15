@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addIngredient } from "../../features/recipeSlice";
+import { addIngredient, addInstructions, createRecipe } from "../../features/recipeSlice";
 import SingleIngredient from "./SingleIngredient";
-import { createRecipe } from "../../services/recipeService";
+import * as recipeService from "../../services/recipeService";
 
 const AddIngredient = () => {
     const navigate = useNavigate();
@@ -23,15 +23,25 @@ const AddIngredient = () => {
         dispatch(addIngredient(ingredient));
     }
 
-    const createRecipeHandler = async() => {
-       const response = await createRecipe(recipeInfo);
+    const createRecipeHandler = async (e) => {
+        e.preventDefault();
 
-       if(response.status === 'ok') {
-        navigate('/recipe/my-recipes');
-       }
-       else {
-        throw new Error('Couldnot create recipe!')
-       }
+        const formData = new FormData(e.target);
+        const instructions = formData.get('instructions');
+        console.log(instructions);
+        if(instructions.length < 1) {
+            throw new Error('You must add intructions for recipe!')
+        }
+        dispatch(dispatch(addInstructions( instructions )));
+        const response = await recipeService.createRecipe(recipeInfo);
+
+        if (response.status === 'ok') {
+            dispatch(createRecipe());
+            navigate('/recipe/my-recipes');
+        }
+        else {
+            throw new Error('Couldnot create recipe!')
+        }
     }
     return (
         <section className="add-ingredients-section">
@@ -43,13 +53,17 @@ const AddIngredient = () => {
                 <button type="submit">Add ingredient</button>
             </form>
             <ul>
-                { ingredientsArray.length > 0 ?
-                    ingredientsArray.map(x => <SingleIngredient ingredient={x}/>  )                     
+                {ingredientsArray.length > 0 ?
+                    ingredientsArray.map(x => <SingleIngredient ingredient={x} />)
                     :
                     null
                 }
             </ul>
-            <button onClick={createRecipeHandler}>Create recipe</button>
+            <form onSubmit={createRecipeHandler}>
+                <p>Add instrictions:</p>
+                <textarea name="instructions"></textarea>
+                <button type="submit">Create recipe</button>
+            </form>
         </section>
 
     )
