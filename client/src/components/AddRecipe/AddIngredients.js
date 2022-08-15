@@ -32,7 +32,7 @@ const AddIngredient = () => {
         if(instructions.length < 1) {
             throw new Error('You must add intructions for recipe!')
         }
-        dispatch(dispatch(addInstructions( instructions )));
+        dispatch(dispatch(addInstructions( { instructions } )));
         const response = await recipeService.createRecipe(recipeInfo);
 
         if (response.status === 'ok') {
