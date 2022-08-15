@@ -2,7 +2,7 @@ const Recipe = require("../models/Recipe.js");
 
 const getAll = async (_id) => {
     try {
-        await Recipe.findAll({ userId: _id });
+        await Recipe.find({ userId: _id }).lean();
 
         return { status: 'ok' };
 
