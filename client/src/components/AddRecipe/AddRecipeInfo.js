@@ -27,16 +27,16 @@ const AddRecipeInfo = () => {
                 <label htmlFor="name">Recipe name:</label>
                 <input name="name" type="string" />
                 <label htmlFor="portions">Portions:</label>
-                <input name="portions" type="number" min={1}/>
+                <input name="portions" type="number" min={1} />
+                <label htmlFor="image">Image:</label>
+                <input name="image" type="string" />
                 <select name="category">
                     <option value="meat">Recipe with meat</option>
                     <option value="vegetarian">Vegeterian recipe</option>
                     <option value="fish">Fish and seafood recipe</option>
                     <option value="dessert">Dessert</option>
-                </select>     
-                <label htmlFor="image">Image:</label>
-                <input name="image" type="string" />
-                <button type="submit">Add ingredients</button>        
+                </select>
+                <button type="submit">Add ingredients</button>
             </form>
         </section>
     )
