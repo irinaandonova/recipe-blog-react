@@ -5,7 +5,9 @@ const initialState = {
     portions: 0,
     userId: '',
     category: '',    
-    ingredients: []
+    ingredients: [],
+    instructions: '',
+    image: ''
 }
 
 export const recipeSlice = createSlice({
@@ -16,16 +18,21 @@ export const recipeSlice = createSlice({
             state.name = action.payload.name;
             state.portions = action.payload.portions;
             state.userId = action.payload.userId;
-            state.category = action.payload.category;            
+            state.category = action.payload.category;  
+            state.image = action.payload.image;          
         },
         addIngredient: (state, action) => {
             state.ingredients.push(action.payload);
         },
         createRecipe: (state) => {
             state = initialState;
+        },
+        addInstructions: (state, action) => {
+            state.instructions = action.payload;
+            console.log(state.instructions);
         }
     }
 })
 
-export const { addRecipeInfo, addIngredient, createRecipe } = recipeSlice.actions;
+export const { addRecipeInfo, addIngredient, createRecipe, addInstructions } = recipeSlice.actions;
 export default recipeSlice.reducer;
