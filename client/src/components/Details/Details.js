@@ -12,13 +12,12 @@ const Details = () => {
     const { userInfo } = useContext(AuthContext);
     const dispatch = useDispatch();
     const commentsArray = useSelector((state) => state.comments);
-
     const { _id } = useParams();
 
     useEffect(() => {
-        recipeService.getOne({ _id })
+        recipeService.getOne(_id)
             .then(res => {
-                setRecipeInfo(res);
+                setRecipeInfo(res.recipe);
                 dispatch(getComments({ comments: res.comments, recipeId: _id }))
             })
             .catch(err => console.log(err))
