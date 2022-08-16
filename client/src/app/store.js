@@ -5,7 +5,7 @@ import recipeSlice from '../features/recipeSlice';
 export const store = configureStore({
     reducer: {
         recipe: recipeSlice,
-        comment: commentSlice
+        comments: commentSlice
     }
 })
 
