@@ -18,7 +18,7 @@ const AddRecipeInfo = () => {
         const portions = formData.get('portions');
         const category = formData.get('category');
         const image = formData.get('image');
-        dispatch(addRecipeInfo({ name, portions, userId: userInfo._id, category, username: userInfo.username, image }));
+        dispatch(addRecipeInfo({ name, portions, userId: userInfo._id, category, username: userInfo.username, image, createdBy: userInfo.username }));
         navigate('/recipe/add/ingredients');
     }
     return (
