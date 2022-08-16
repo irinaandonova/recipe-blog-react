@@ -7,6 +7,7 @@ import Header from './components/Header/Header';
 import AddRecipeInfo from './components/AddRecipe/AddRecipeInfo';
 import AddIngredients from './components/AddRecipe/AddIngredients';
 import Details from './components/Details/Details';
+import MyRecipes from './components/MyRecipes/MyRecipes';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path='/recipe/add/info' element={<AddRecipeInfo />} />
           <Route path='/recipe/add/ingredients' element={<AddIngredients />} />
           <Route path='/recipe/:_id' element={<Details />} />
+          <Route path='/recipe/my-recipes' element={<MyRecipes />} />
         </Routes>
       </AuthContextProvider>
     </div>
