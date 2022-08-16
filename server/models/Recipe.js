@@ -11,6 +11,10 @@ const recipeSchema = new mongoose.Schema({
             ref: 'User',
             required: true
         },
+        createdBy: {
+            type: String,
+            required: true
+        },
         ingredients: [
             {
                 name: {
