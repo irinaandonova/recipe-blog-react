@@ -14,11 +14,25 @@ router.get('', async (req, res) => {
         res.json({ status: 'ok', err });
     }
 });
+router.get('/:_id', async(req,res) => {
+    const { _id } = req.params;
+
+    try {
+        const recipes = await recipeService.getOne(_id);
+        if (recipes.status === 'ok') {
+            res.json(recipes);
+        }
+    }
+    catch (err) {
+        console.log(err);
+        res.json({ status: 'ok', err });
+    }
+})
 router.post('/create', async (req, res) => {
-    const { name, userId, portions, image, category, instructions } = req.body.recipeInfo;
+    const { name, userId, createdBy, portions, image, category, instructions } = req.body.recipeInfo;
     console.log(req.body);
     try {
-        const result = await recipeService.createRecipe({ name, userId, portions, image, category, instructions });
+        const result = await recipeService.createRecipe({ name, userId, createdBy, portions, image, category, instructions });
         res.json(result);
     }
     catch (err) {

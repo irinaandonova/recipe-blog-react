@@ -10,9 +10,19 @@ const getAll = async() => {
         return { status: 'err', err };
     }
 }
-const createRecipe = async ({ name, userId, portions, image, category, instructions }) => {
+const getOne = async(_id) => {
     try {
-        const savedRecipe = await new Recipe({ name, userId, portions, image, category, instructions });
+        const recipe = await Recipe.findById({  _id });
+        return { status: 'ok', recipe };
+    }
+    catch (err) {
+        console.log(err);
+        return { status: 'err', err };
+    }  
+}
+const createRecipe = async ({ name, userId, createdBy, portions, image, category, instructions }) => {
+    try {
+        const savedRecipe = await new Recipe({ name, userId, createdBy, portions, image, category, instructions });
         await savedRecipe.save();
 
         return { status: 'ok' };
@@ -50,6 +60,7 @@ const likeRecipe = async ({ userId, recipeId }) => {
 
 const recipeService = {
     getAll,
+    getOne,
     createRecipe,
     likeRecipe,
 }
