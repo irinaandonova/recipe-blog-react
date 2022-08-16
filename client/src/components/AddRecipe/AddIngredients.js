@@ -28,11 +28,11 @@ const AddIngredient = () => {
 
         const formData = new FormData(e.target);
         const instructions = formData.get('instructions');
-        console.log(instructions);
+        
         if(instructions.length < 1) {
             throw new Error('You must add intructions for recipe!')
         }
-        dispatch(dispatch(addInstructions( { instructions } )));
+        dispatch(dispatch(addInstructions(instructions)));
         const response = await recipeService.createRecipe(recipeInfo);
 
         if (response.status === 'ok') {

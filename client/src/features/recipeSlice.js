@@ -20,7 +20,8 @@ export const recipeSlice = createSlice({
             state.portions = action.payload.portions;
             state.userId = action.payload.userId;
             state.category = action.payload.category;  
-            state.image = action.payload.image;          
+            state.image = action.payload.image;      
+            state.createdBy = action.payload.createdBy;    
         },
         addIngredient: (state, action) => {
             state.ingredients.push(action.payload);
