@@ -34,7 +34,7 @@ exports.getOne = async (_id) => {
     try {
         const response = await fetch(`${baseUrl}/${_id}`);
         let result = await response.json();
-
+        console.log(result);
         return result;
     }
     catch (err) {
