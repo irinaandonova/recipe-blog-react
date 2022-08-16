@@ -4,7 +4,7 @@ const getAll = async (userId) => {
     try {
         const recipes = await Recipe.find({}).lean();
         const myRecipes = recipes.filter(x => x.userId.toString() == userId);
-        return { status: 'ok',  myRecipes};
+        return { status: 'ok', myRecipes };
 
     }
     catch (err) {
@@ -27,12 +27,16 @@ const editRecipe = async ({ userId, recipe }) => {
         return { status: 'err', err };
     }
 }
-const deleteRecipe = async (_id) => {
+const deleteRecipe = async (_id, userId) => {
     try {
-        await Recipe.findByIdAndRemove({ _id });
-
-        return { status: 'ok' };
-
+        const recipe = await Recipe.findById({ _id });
+        if (recipe.userId.toString() === userId) {
+            await Recipe.deleteOne({ _id });
+            return { status: 'ok' };
+        }
+        else {
+            return { status: 'err', err: 'Unauthorized request!' }
+        }
     }
     catch (err) {
         console.log(err);

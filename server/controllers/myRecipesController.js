@@ -26,10 +26,10 @@ router.post('/edit', async (req, res) => {
     }
 });
 router.delete('/delete/:_id', async (req, res) => {
-    const { _id } = req.params._id;
-
+    const { _id } = req.params;
+    const { userId } = req.body;
     try {
-        const result = await myRecipesService.deleteRecipe(_id);
+        const result = await myRecipesService.deleteRecipe(_id, userId);
         res.json(result);
     }
     catch (err) {
