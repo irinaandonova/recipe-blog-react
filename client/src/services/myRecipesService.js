@@ -1,11 +1,11 @@
 const baseUrl = 'http://localhost:4000/my-recipes';
 
-exports.getAll = async({ _id }) => {
+exports.getAll = async({ userId }) => {
     try {
-        let response = await fetch(`${baseUrl}/${_id}`);
+        let response = await fetch(`${baseUrl}/${userId}`);
         let result = await response.json();
-
-        return result;
+        console.log(result.myRecipes);
+        return result.myRecipes;
     }
     catch (err) {
         console.log(err);
