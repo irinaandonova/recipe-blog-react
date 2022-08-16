@@ -4,6 +4,7 @@ const initialState = {
     name: "",
     portions: 0,
     userId: '',
+    createdBy: '',
     category: '',    
     ingredients: [],
     instructions: '',
