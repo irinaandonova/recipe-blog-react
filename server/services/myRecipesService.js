@@ -1,10 +1,10 @@
 const Recipe = require("../models/Recipe.js");
 
-const getAll = async (_id) => {
+const getAll = async (userId) => {
     try {
-        await Recipe.find({ userId: _id }).lean();
-
-        return { status: 'ok' };
+        const recipes = await Recipe.find({}).lean();
+        const myRecipes = recipes.filter(x => x.userId.toString() == userId);
+        return { status: 'ok',  myRecipes};
 
     }
     catch (err) {
