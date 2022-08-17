@@ -1,7 +1,8 @@
 const SingleIngredient = ({ ingredient }) => {
     return(
         <article className="single-ingredient">
-            <p>{ingredient.ingredientName}</p>
+            <p>{ingredient.name}</p>
+            <p>:</p>
             <p>{ingredient.metric}</p>
         </article>
     )
