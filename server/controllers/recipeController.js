@@ -3,7 +3,7 @@ const recipeService = require('../services/recipeService.js');
 
 router.get('', async (req, res) => {
     try {
-        const recipes = await recipeService.getAll();
+        const recipes = await recipeService.getRecipes();
         if (recipes.status === 'ok') {
             res.json(recipes);
         }
@@ -14,7 +14,7 @@ router.get('', async (req, res) => {
         res.json({ status: 'ok', err });
     }
 });
-router.get('/:_id', async(req,res) => {
+router.get('/details/:_id', async(req,res) => {
     const { _id } = req.params;
 
     try {
@@ -52,8 +52,16 @@ router.post('/:_id/like', async (req, res) => {
         res.json({ status: 'err', err });
     }
 });
-router.get('/test', (req, res) => {
-    res.json({ status: 'ok' })
+router.get('/:category', async(req, res) => {
+    const { category } = req.params;
+    try {
+        let result = await recipeService.getRecipes(category);
+        res.json(result);
+    }
+    catch (err) {
+        console.log(err);
+        res.json({ status: 'err', err });
+    } 
 })
 
 module.exports = router;

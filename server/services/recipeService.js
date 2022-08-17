@@ -1,8 +1,12 @@
 const Recipe = require("../models/Recipe.js");
 
-const getAll = async() => {
+const getRecipes = async(category) => {
+    
     try {
-        const recipes = await Recipe.find().lean();
+        let recipes = await Recipe.find().lean();
+        if(category) {
+            recipes = recipes.filter(x => x.category === category);
+        }
         return { status: 'ok', recipes };
     }
     catch (err) {
@@ -59,7 +63,7 @@ const likeRecipe = async ({ userId, recipeId }) => {
 }
 
 const recipeService = {
-    getAll,
+    getRecipes,
     getOne,
     createRecipe,
     likeRecipe,
