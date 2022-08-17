@@ -1,0 +1,8 @@
+.single-ingredient {
+    display: flex;
+    justify-content: space-between;
+}
+.single-ingredient p {
+    margin: 5px;
+}
+

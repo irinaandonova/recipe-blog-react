@@ -6,6 +6,7 @@ import * as recipeService from "../../services/recipeService";
 import * as commentService from "../../services/commentService";
 import * as myRecipeService from "../../services/myRecipesService";
 import Comment from "../Comment/Comment";
+import SingleIngredient from "../AddRecipe/SingleIngredient";
 import AuthContext from "../../context/authContext";
 
 const Details = () => {
@@ -16,7 +17,6 @@ const Details = () => {
     const commentsArray = useSelector((state) => state.comments);
     const navigate = useNavigate();
     const { _id } = useParams();
-
     useEffect(() => {
         recipeService.getOne(_id)
             .then(res => {
@@ -26,10 +26,10 @@ const Details = () => {
             })
             .catch(err => console.log(err))
     }, [_id, dispatch, userInfo]);
-    const deleteRecipeHandler = async() => {
+    const deleteRecipeHandler = async () => {
         const response = await myRecipeService.deleteRecipe({ _id: recipeInfo._id, userId: userInfo._id });
 
-        if(response.status === 'ok') {
+        if (response.status === 'ok') {
             navigate('/recipe/my-recipes');
         }
         else {
@@ -54,11 +54,17 @@ const Details = () => {
     return (
         <section className="recipe-details">
             <article className="recipe-info-article">
-                <img alt="img" src={recipeInfo.image}></img>
-                <p>Category: {recipeInfo.category}</p>
-                <p>Portion: {recipeInfo.portions}</p>
-                <p>Instructions:{recipeInfo.instructions}</p>
-                <p>Created by:{recipeInfo.username}</p>
+                <img alt="img" src={recipeInfo.image} className="details-img"></img>
+                <article className="info-article">
+                    <article className="category-portions">
+                        <p>Category: {recipeInfo.category}</p>
+                        <p>Portion: {recipeInfo.portions}</p>
+                    </article>
+                    { recipeInfo.ingredients ? recipeInfo.ingredients.map(x => <SingleIngredient ingredient={x} key={x.ingredientName + x.metric} />) : null}
+                    <p>Instructions:</p>
+                    <p>{recipeInfo.instructions}</p>
+                    <p className="creator">Created by:{recipeInfo.username}</p>
+                </article>
             </article>
             {
                 isCreator ?

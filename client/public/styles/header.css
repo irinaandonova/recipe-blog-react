@@ -1,25 +1,62 @@
+@import url('http://fonts.cdnfonts.com/css/louis-george-cafe');
 header {
-    border-bottom: 3px solid;
-    width: 95%;
     margin-left: 28px;
 }
-nav {
-    margin-right: 20px;
+.upper-navbar {
+    display: flex;
+    justify-content: space-between;
 }
 .header-list {
     display: flex;
     justify-content: flex-end;
+    margin: 0;
+    margin-left: 2px;
 }
 .header-link {
     list-style: none;
+    margin-top: 15px;
 }
-.header-list a {
+.logo {
+    font-size: 60px;
+    text-decoration: none;
+
+}
+.upper-link  {
     text-decoration: none;
     color: black;
-    border: 2px solid;
-    padding: 6px;
+    border-radius: 8px;
+    margin: 2px;
+    padding: 10px;
     border-right: none;
+    background: #CCCBCA;
 }
 .right a{
     border: 2px solid;
+}
+.category-link {
+    color: black;
+    text-decoration: none;
+    padding: 13px 100px 13px 90px;
+    border-radius: 10px;
+    
+}
+.category-list {
+    display: flex;
+    padding: 20px 0px 15px;
+    width: 100%;
+    margin: 20px 20px 0 0px;
+    list-style: none;
+    justify-content: space-evenly;
+}
+.meat {
+    background-color: #DB8C3D;
+}
+.fish {
+    background-color: #1191AB;
+}
+.vegetarian {
+    background-color: #BED667;
+}
+.dessert {
+    background-color: #a13b78;
 }

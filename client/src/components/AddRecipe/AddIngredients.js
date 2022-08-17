@@ -14,10 +14,10 @@ const AddIngredient = () => {
     const addIngredientHandler = (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
-        const ingredientName = formData.get('ingredientName');
+        const name = formData.get('ingredientName');
         const metric = formData.get('metric');
         const ingredient = {
-            ingredientName,
+            name,
             metric
         }
         dispatch(addIngredient(ingredient));
