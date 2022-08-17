@@ -1,8 +1,14 @@
 const baseUrl = 'http://localhost:4000/recipe';
 
-exports.getAll = async () => {
+exports.getRecipes = async (category) => {
+   let url = baseUrl;
     try {
-        let response = await fetch(baseUrl);
+        if (category) {
+            url += `/${category}`
+        }
+        
+            let response = await fetch(url);
+        
         let result = await response.json();
 
         return result;
@@ -32,7 +38,7 @@ exports.createRecipe = async (recipeInfo) => {
 }
 exports.getOne = async (_id) => {
     try {
-        const response = await fetch(`${baseUrl}/${_id}`);
+        const response = await fetch(`${baseUrl}/details/${_id}`);
         let result = await response.json();
         console.log(result);
         return result;
