@@ -40,7 +40,6 @@ const recipeSchema = new mongoose.Schema({
         },
         instructions: {
             type: String,
-            required: true,
             maxLength: 200
         },
         comments: [
@@ -50,18 +49,23 @@ const recipeSchema = new mongoose.Schema({
                     required: true,
                     ref: 'User'
                 },
-                text: {
+                comment: {
                     type: String,
                     minlength: 1,
-                    maxlength: 50
+                    maxlength: 50,
+                },
+                username: {
+                    type: String,
+                },
+                createdAt: {
+                    type: Date
                 }
-
-            }
+            },
         ],
         likes: {
             type: Array
         }
-    });
+    }, );
 
 const Recipe = mongoose.model('Recipe', recipeSchema);
 module.exports = Recipe;

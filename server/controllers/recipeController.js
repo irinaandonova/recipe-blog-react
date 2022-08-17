@@ -29,10 +29,10 @@ router.get('/:_id', async(req,res) => {
     }
 })
 router.post('/create', async (req, res) => {
-    const { name, userId, createdBy, portions, image, category, instructions } = req.body.recipeInfo;
+    const { name, userId, createdBy, portions, image, category, instructions, ingredients } = req.body.recipeInfo;
     console.log(req.body);
     try {
-        const result = await recipeService.createRecipe({ name, userId, createdBy, portions, image, category, instructions });
+        const result = await recipeService.createRecipe({ name, userId, createdBy, portions, image, category, instructions, ingredients });
         res.json(result);
     }
     catch (err) {

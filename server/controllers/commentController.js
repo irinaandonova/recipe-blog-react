@@ -2,9 +2,10 @@ const router = require('express').Router();
 const commentService = require('../services/commentService.js');
 
 router.post('/add', async (req, res) => {
-    const { userId, text, productId } = req.body;
+    const { userId, comment, recipeId, username } = req.body.commentInfo;
+    console.log(req.body);
     try {
-        const result = await commentService.addComment(productId, userId, text);
+        const result = await commentService.addComment(recipeId, userId, comment, username);
         res.json(result);
     }
     catch (err) {

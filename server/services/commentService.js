@@ -1,12 +1,14 @@
 const Recipe = require('../models/Recipe.js');
 
-const addComment = async (productId, userId, text) => {
+const addComment = async (recipeId, userId, comment, username) => {
     try {
-        const recipeInfo = await Recipe.findById({ _id: productId });
-        const comment = { userId, text };
-        recipeInfo.comments.push(comment);
+        const recipeInfo = await Recipe.findById({ _id: recipeId });
+        const commentInfo = { userId, comment, username };
+        const createdAt = new Date();
+        commentInfo.createdAt = createdAt;
+        recipeInfo.comments.push(commentInfo);
         await recipeInfo.save();
-        return { status: 'ok', comment: recipeInfo.comment };
+        return { status: 'ok', comment: recipeInfo.comments[recipeInfo.comments.length - 1] };
     }
     catch (err) {
         console.log(err);

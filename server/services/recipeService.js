@@ -20,9 +20,9 @@ const getOne = async(_id) => {
         return { status: 'err', err };
     }  
 }
-const createRecipe = async ({ name, userId, createdBy, portions, image, category, instructions }) => {
+const createRecipe = async ({ name, userId, createdBy, portions, image, category, instructions, ingredients }) => {
     try {
-        const savedRecipe = await new Recipe({ name, userId, createdBy, portions, image, category, instructions });
+        const savedRecipe = await new Recipe({ name, userId, createdBy, portions, image, category, instructions, ingredients });
         await savedRecipe.save();
 
         return { status: 'ok' };
