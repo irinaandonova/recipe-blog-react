@@ -22,7 +22,7 @@ function App() {
           <Route path='/recipe/add/ingredients' element={<AddIngredients />} />
           <Route path='/recipe/:_id' element={<Details />} />
           <Route path='/recipe/my-recipes' element={<MyRecipes />} />
-          <Route path='/categories/:category' element={<Dashboard category={category} />} />
+          <Route path='/categories/:category' element={<Dashboard />} />
         </Routes>
       </AuthContextProvider>
     </div>
