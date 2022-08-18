@@ -26,11 +26,13 @@ router.post('/:_id/edit', async(req, res) => {
         res.json({ status: 'err', err });
     }
 });
-router.delete('/:_id/delete', async(req, res) => {
-    const { _id } = req.params;
-
+router.delete('/:commentId/delete', async(req, res) => {
+    const { commentId } = req.params;
+    const { recipeId } = req.body;
+    console.log(req.params);
+    console.log(req.body);
     try {
-        const result = await commentService.deleteComment(_id);
+        const result = await commentService.deleteComment({ commentId, recipeId });
         res.json(result);
     }
     catch (err) {

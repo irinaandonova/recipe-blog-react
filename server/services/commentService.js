@@ -33,16 +33,14 @@ const editComment = async ({ _id, commentId, userId, text }) => {
         return { status: 'err', err };
     }
 }
-const deleteComment = async ({ _id, commentId }) => {
+const deleteComment = async ({ commentId, recipeId }) => {
     try {
-        const recipe = await Recipe.findById({ _id });
-
-        if (recipe.userId !== userId) {
-            return { status: 'err', err: 'Unauthorized reqest!' };
-        }
-        const index = recipe.comments.findIndex(x => x._id === commentId);
+        const recipe = await Recipe.findById({ _id: recipeId });
+        
+        const index = recipe.comments.findIndex(x => x._id.toString() === commentId);
+        console.log(index);
         if (index !== -1) {
-            recipe.comment[index].splice(index, 1);
+            recipe.comments.splice(index, 1);
         }
 
         await recipe.save();

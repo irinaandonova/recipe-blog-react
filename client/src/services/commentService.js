@@ -17,3 +17,21 @@ exports.addComment = async({ commentInfo }) => {
         return { status: 'err' };
     }
 }
+exports.deleteComment = async({ recipeId, commentId}) => {
+    console.log(recipeId);
+    try {
+        const response = await fetch(`${baseUrl}/${commentId}/delete`, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'DELETE',
+            body: JSON.stringify({ recipeId })
+        });
+        const result = await response.json();
+        return result;
+    }
+    catch (err) {
+        console.log(err);
+        return { status: 'err' };
+    }
+}
