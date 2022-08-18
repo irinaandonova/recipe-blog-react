@@ -43,7 +43,7 @@ const recipeSchema = new mongoose.Schema({
         },
         instructions: {
             type: String,
-            maxLength: 200
+            maxLength: 2000
         },
         comments: [
             {
