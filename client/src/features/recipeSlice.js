@@ -26,9 +26,7 @@ export const recipeSlice = createSlice({
         addIngredient: (state, action) => {
             state.ingredients.push(action.payload);
         },
-        createRecipe: (state) => {
-            state = initialState;
-        },
+        createRecipe: () => initialState,
         addInstructions: (state, action) => {
             state.instructions = action.payload;
             console.log(state.instructions);

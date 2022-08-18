@@ -29,8 +29,11 @@ router.get('/details/:_id', async(req,res) => {
     }
 })
 router.post('/create', async (req, res) => {
-    const { name, userId, createdBy, portions, image, category, instructions, ingredients } = req.body.recipeInfo;
-    console.log(req.body);
+    const { name, userId, createdBy, portions, image, category, ingredients } = req.body.recipeInfo;
+    const { instructions } = req.body;
+    
+
+    console.log(`cont ${instructions}`);
     try {
         const result = await recipeService.createRecipe({ name, userId, createdBy, portions, image, category, instructions, ingredients });
         res.json(result);
@@ -54,6 +57,7 @@ router.post('/:_id/like', async (req, res) => {
 });
 router.get('/:category', async(req, res) => {
     const { category } = req.params;
+    console.log(category);
     try {
         let result = await recipeService.getRecipes(category);
         res.json(result);

@@ -1,14 +1,14 @@
 const baseUrl = 'http://localhost:4000/recipe';
 
 exports.getRecipes = async (category) => {
-   let url = baseUrl;
+    let url = baseUrl;
     try {
         if (category) {
             url += `/${category}`
         }
-        
-            let response = await fetch(url);
-        
+
+        let response = await fetch(url);
+
         let result = await response.json();
 
         return result;
@@ -18,14 +18,14 @@ exports.getRecipes = async (category) => {
         return { status: 'err' };
     }
 }
-exports.createRecipe = async (recipeInfo) => {
+exports.createRecipe = async (recipeInfo, instructions) => {
     try {
         let response = await fetch(`${baseUrl}/create`, {
             headers: {
                 'Content-Type': 'application/json'
             },
             method: 'POST',
-            body: JSON.stringify({ recipeInfo })
+            body: JSON.stringify({ recipeInfo, instructions })
         });
         let result = await response.json();
 

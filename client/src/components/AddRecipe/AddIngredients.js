@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addIngredient, addInstructions, createRecipe } from "../../features/recipeSlice";
+import { addIngredient, createRecipe } from "../../features/recipeSlice";
 import SingleIngredient from "./SingleIngredient";
 import * as recipeService from "../../services/recipeService";
 
 const AddIngredient = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const recipeInfo = useSelector((state) => state.recipe);
     const ingredientsArray = recipeInfo.ingredients;
@@ -28,12 +28,12 @@ const AddIngredient = () => {
 
         const formData = new FormData(e.target);
         const instructions = formData.get('instructions');
-        
-        if(instructions.length < 1) {
+
+        if (instructions.length < 1) {
             throw new Error('You must add intructions for recipe!')
         }
-        dispatch(dispatch(addInstructions(instructions)));
-        const response = await recipeService.createRecipe(recipeInfo);
+
+        const response = await recipeService.createRecipe(recipeInfo, instructions);
 
         if (response.status === 'ok') {
             dispatch(createRecipe());
