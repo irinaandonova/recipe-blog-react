@@ -44,7 +44,7 @@ const Header = () => {
 
                     </li>
                     <li>
-                        <Link to="/categories/vegeterian" className='category-link vegetarian'>Vegeterian recipes</Link>
+                        <Link to="/categories/vegetarian" className='category-link vegetarian'>Vegeterian recipes</Link>
 
                     </li>
                     <li>
