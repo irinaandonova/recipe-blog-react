@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getComments } from "../../features/commentSlice";
+import { addComment, getComments } from "../../features/commentSlice";
 import * as recipeService from "../../services/recipeService";
 import * as commentService from "../../services/commentService";
 import * as myRecipeService from "../../services/myRecipesService";
@@ -14,14 +14,15 @@ const Details = () => {
     const [isCreator, setIsCreator] = useState(false);
     const { userInfo } = useContext(AuthContext);
     const dispatch = useDispatch();
-    const commentsArray = useSelector((state) => state.comments);
+    const comments = useSelector(state => state.comments.comments);
     const navigate = useNavigate();
     const { _id } = useParams();
+
     useEffect(() => {
         recipeService.getOne(_id)
             .then(res => {
-                setRecipeInfo(res.recipe);
-                dispatch(getComments({ comments: res.comments, recipeId: _id }));
+                setRecipeInfo(res.recipe);                
+                dispatch(getComments({ recipeId:_id, comments: res.recipe.comments }));
                 res.recipe.userId.toString() === userInfo._id ? setIsCreator(true) : setIsCreator(false)
             })
             .catch(err => console.log(err))
@@ -48,7 +49,11 @@ const Details = () => {
             username: userInfo.username,
             comment
         }
-        await commentService.addComment({ commentInfo });
+        let response = await commentService.addComment({ commentInfo });
+        if(response.status === 'ok') {
+            addComment(response.comment)
+        }
+        
     };
 
     return (
@@ -85,8 +90,8 @@ const Details = () => {
             </article>
             <article className="comment-section-aerticle">
                 {
-                    commentsArray.length > 0 ?
-                        commentsArray.map(x => <Comment comment={x} key={x._id} />)
+                    comments && comments.length > 0 ?
+                        comments.map(x => <Comment comment={x} key={x._id}/>)
                         :
                         <p>Be the first one to comment on this recipe!</p>
                 }
