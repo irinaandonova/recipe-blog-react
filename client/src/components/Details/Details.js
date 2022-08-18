@@ -1,18 +1,20 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addComment, getComments } from "../../features/commentSlice";
+import { getComments } from "../../features/commentSlice";
 import * as recipeService from "../../services/recipeService";
 import * as commentService from "../../services/commentService";
 import * as myRecipeService from "../../services/myRecipesService";
 import Comment from "../Comment/Comment";
 import SingleIngredient from "../AddRecipe/SingleIngredient";
 import AuthContext from "../../context/authContext";
+import AddComment from "../Comment/AddComment";
 
 const Details = () => {
     const [recipeInfo, setRecipeInfo] = useState({});
     const [isCreator, setIsCreator] = useState(false);
     const { userInfo } = useContext(AuthContext);
+
     const dispatch = useDispatch();
     const comments = useSelector(state => state.comments.comments);
     const navigate = useNavigate();
@@ -21,8 +23,8 @@ const Details = () => {
     useEffect(() => {
         recipeService.getOne(_id)
             .then(res => {
-                setRecipeInfo(res.recipe);                
-                dispatch(getComments({ recipeId:_id, comments: res.recipe.comments }));
+                setRecipeInfo(res.recipe);
+                dispatch(getComments({ recipeId: _id, comments: res.recipe.comments }));
                 res.recipe.userId.toString() === userInfo._id ? setIsCreator(true) : setIsCreator(false)
             })
             .catch(err => console.log(err))
@@ -38,23 +40,7 @@ const Details = () => {
         }
 
     }
-    const addCommentHandler = async (e) => {
-        e.preventDefault();
 
-        const formData = new FormData(e.target);
-        const comment = formData.get('comment');
-        const commentInfo = {
-            recipeId: recipeInfo._id,
-            userId: userInfo._id,
-            username: userInfo.username,
-            comment
-        }
-        let response = await commentService.addComment({ commentInfo });
-        if(response.status === 'ok') {
-            addComment(response.comment)
-        }
-        
-    };
 
     return (
         <section className="recipe-details">
@@ -65,7 +51,7 @@ const Details = () => {
                         <p>Category: {recipeInfo.category}</p>
                         <p>Portion: {recipeInfo.portions}</p>
                     </article>
-                    { recipeInfo.ingredients ? recipeInfo.ingredients.map(x => <SingleIngredient ingredient={x} key={x.ingredientName + x.metric} />) : null}
+                    {recipeInfo.ingredients ? recipeInfo.ingredients.map(x => <SingleIngredient ingredient={x} key={x.ingredientName + x.metric} />) : null}
                     <p>Instructions:</p>
                     <p>{recipeInfo.instructions}</p>
                     <p className="creator">Created by:{recipeInfo.username}</p>
@@ -80,10 +66,7 @@ const Details = () => {
             <article className="add-comment">
                 {
                     userInfo._id ?
-                        <form className="add-comment-form" onSubmit={addCommentHandler}>
-                            <textarea name="comment"></textarea>
-                            <button type="submit">Add comment</button>
-                        </form>
+                        <AddComment recipeId={recipeInfo._id} />
                         :
                         null
                 }
@@ -91,7 +74,7 @@ const Details = () => {
             <article className="comment-section-aerticle">
                 {
                     comments && comments.length > 0 ?
-                        comments.map(x => <Comment comment={x} key={x._id}/>)
+                        comments.map(x => <Comment comment={x} key={x._id} />)
                         :
                         <p>Be the first one to comment on this recipe!</p>
                 }
