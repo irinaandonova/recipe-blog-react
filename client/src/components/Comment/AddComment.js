@@ -19,7 +19,6 @@ const AddComment = ({recipeId}) => {
             comment
         }
         let response = await commentService.addComment({ commentInfo });
-        console.log(response);
         if (response.status === 'ok') {
             
             dispatch(addComment({comment: response.comment}));
@@ -27,7 +26,7 @@ const AddComment = ({recipeId}) => {
     }
     return (
         <form className="add-comment-form" onSubmit={addCommentHandler}>
-            <textarea name="comment"></textarea>
+            <textarea name="comment" maxLength={2000} className="comment-textarea"></textarea>
             <button type="submit">Add comment</button>
         </form>
     )
