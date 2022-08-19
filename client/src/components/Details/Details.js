@@ -54,15 +54,21 @@ const Details = () => {
                     {recipeInfo.ingredients ? recipeInfo.ingredients.map(x => <SingleIngredient ingredient={x} key={x.ingredientName + x.metric} />) : null}
                     <p>Instructions:</p>
                     <p>{recipeInfo.instructions}</p>
-                    <p className="creator">Created by:{recipeInfo.username}</p>
+                    <article className="creator-info">
+                        {
+                            isCreator ?
+                                <button className="delete-btn" onClick={deleteRecipeHandler}>Delete recipe</button>
+                                :
+                                null
+                        }
+                        <p className="creator">Created by: {recipeInfo.username}</p>
+                    </article>
+
+
                 </article>
+
             </article>
-            {
-                isCreator ?
-                    <button className="delete-btn" onClick={deleteRecipeHandler}>Delete recipe</button>
-                    :
-                    null
-            }
+
             <article className="add-comment">
                 {
                     userInfo._id ?
