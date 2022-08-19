@@ -1,3 +1,14 @@
 .auth-section {
     margin: 50px;
 }
+.auth-form {
+    display: block;
+    padding: 0.4rem;
+    width: 15%;
+    margin: 40px 80px;
+    border: 3px solid;
+    height: 200px;
+    padding: 20px;
+    border-radius: 8px;
+    background: #bed6be6b;
+}

@@ -1,3 +1,7 @@
+.recipe-info-article {
+    display: flex;
+    justify-content: space-around;
+}
 .details-img {
     max-width: 400px;
     max-height: 300px;
@@ -9,7 +13,9 @@
 }
 .info-article {
     width: 30%;
-    background-color: #CCCBCA;
+    background-color: #cccbca30;
+    border-radius: 20px;
+    padding: 20px;
 }
 .category-portions {
     display: flex;
@@ -19,4 +25,8 @@
     display: flex;
     justify-content: flex-end;
     margin: 10px;
+}
+.creator-info {
+    display: flex;
+    justify-content: space-between;
 }

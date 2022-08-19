@@ -1,0 +1,9 @@
+.add-comment-form {
+    display: block;
+    padding: 0.4rem;
+    width: 15%;
+    margin: 40px 80px;
+}
+.comment-text-area {
+    height: 100px;
+}
