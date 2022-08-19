@@ -54,7 +54,7 @@ const AddIngredient = () => {
             </form>
             <ul>
                 {ingredientsArray.length > 0 ?
-                    ingredientsArray.map(x => <SingleIngredient ingredient={x} />)
+                    ingredientsArray.map((x, index) => <SingleIngredient ingredient={x} key={x.name + index + new Date()}/>)
                     :
                     null
                 }
