@@ -36,23 +36,27 @@ const createRecipe = async ({ name, userId, createdBy, portions, image, category
         return { status: 'err', err };
     }
 }
-const likeRecipe = async ({ userId, recipeId }) => {
+const likeRecipe = async ({ userId, _id }) => {
+    console.log(userId, _id);
     try {
-        const recipeInfo = await Recipe.findById({ recipeId });
-        if (recipeInfo.userId === userId) {
-            return { status: 'err', err: "Cannot like own recipe!" };
+        const recipeInfo = await Recipe.findById({ _id });
+        if (recipeInfo.userId.toString() === userId) {
+            return { status: 'err', msg: "Cannot like own recipe!" };
         }
         else {
-            let index = recipeInfo.likes.findIndex(x => x === userId);
+            let index = recipeInfo.likes.findIndex(x => x.toString() === userId);
             if (index === -1) {
                 recipeInfo.likes.push(userId);
                 await recipeInfo.save();
-                return { status: 'ok' }
+                const likes = recipeInfo.likes;
+
+                return { status: 'ok', likes }
             }
             else {
                 recipeInfo.likes.splice(index, 1);
                 await recipeInfo.save();
-                return { status: 'ok' }
+                const likes = recipeInfo.likes;
+                return { status: 'ok', likes }
             }
         }
     }

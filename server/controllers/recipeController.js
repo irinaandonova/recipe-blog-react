@@ -44,10 +44,10 @@ router.post('/create', async (req, res) => {
     }
 });
 router.post('/:_id/like', async (req, res) => {
-    const { _id } = req.params._id;
+    const { _id } = req.params;
     const { userId } = req.body;
     try {
-        let result = await recipeService.likeRecipe(_id, userId);
+        let result = await recipeService.likeRecipe({ _id, userId });
         res.json(result);
     }
     catch (err) {
