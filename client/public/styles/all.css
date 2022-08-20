@@ -4,4 +4,11 @@
 .single-ingredient p {
     margin: 5px;
 }
-
+.basic-btn {
+    text-decoration: none;
+    color: black;
+    border-radius: 8px;
+    margin: 2px;
+    padding: 10px;
+    background: #CCCBCA;
+}

@@ -4,6 +4,27 @@
     width: 15%;
     margin: 40px 80px;
 }
+.add-comment {
+    border-top: 2px solid;
+}
 .comment-text-area {
     height: 100px;
+}
+.comment-textarea {
+    height: 100px;
+
+}
+.single-comment-article {
+    background-color: #cccbca30;
+    width: 88%;
+    margin: 10px 30px;
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+.user-comment {
+    border-bottom: 2px solid gray;
+    padding-left: 20px;
+}
+.comment-created-at {
+    text-align: end;
 }

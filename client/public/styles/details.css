@@ -1,6 +1,7 @@
 .recipe-info-article {
     display: flex;
     justify-content: space-around;
+    margin-bottom: 10px;
 }
 .details-img {
     max-width: 400px;
