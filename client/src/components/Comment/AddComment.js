@@ -9,7 +9,7 @@ const AddComment = ({recipeId}) => {
     const dispatch = useDispatch();
     const addCommentHandler = async (e) => {
         e.preventDefault();
-        console.log('here');
+      
         const formData = new FormData(e.target);
         const comment = formData.get('comment');
         const commentInfo = {

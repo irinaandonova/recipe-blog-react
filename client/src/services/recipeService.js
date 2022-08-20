@@ -48,4 +48,25 @@ exports.getOne = async (_id) => {
         return { status: 'err' };
     }
 }
+/*
+exports.likeRecipe = async ({ _id, userId }) => {
+    console.log(userId);
+    try {
+        const response = await fetch(`${baseUrl}/${_id}/like`, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: JSON.stringify({ userId })
+        });
+        let result = await response.json();
+        console.log(result);
+        return result;
+    }
+    catch (err) {
+        console.log(err);
+        return { status: 'err' };
+    }
+}
 
+*/
