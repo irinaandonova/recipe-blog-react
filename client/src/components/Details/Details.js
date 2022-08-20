@@ -24,7 +24,7 @@ const Details = () => {
             .then(res => {
                 setRecipeInfo(res.recipe);
                 dispatch(getComments({ recipeId: _id, comments: res.recipe.comments }));
-                res.recipe.userId.toString() === userInfo._id ? setIsCreator(true) : setIsCreator(false)
+                res.recipe.userId.toString() === userInfo._id ? setIsCreator(true) : setIsCreator(false);
             })
             .catch(err => console.log(err))
     }, [_id, dispatch, userInfo]);
@@ -42,7 +42,7 @@ const Details = () => {
     return (
         <section className="recipe-details">
             <article className="recipe-info-article">
-                <img alt="img" src={recipeInfo.image} className="details-img"></img>
+                <img alt="img" src={recipeInfo.image} className="details-img" />
                 <article className="info-article">
                     <article className="category-portions">
                         <p>Category: {recipeInfo.category}</p>
@@ -60,8 +60,6 @@ const Details = () => {
                         }
                         <p className="creator">Created by: {recipeInfo.username}</p>
                     </article>
-
-
                 </article>
 
             </article>

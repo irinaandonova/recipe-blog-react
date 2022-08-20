@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState =  {recipeId: '', comments: [], onEdit: false};
+const initialState =  {recipeId: '', comments: []};
 const commentsSlice = createSlice({
     name: "comments",
     initialState,
