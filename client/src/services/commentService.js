@@ -17,8 +17,7 @@ exports.addComment = async({ commentInfo }) => {
         return { status: 'err' };
     }
 }
-exports.deleteComment = async({ recipeId, commentId}) => {
-    console.log(recipeId);
+exports.deleteComment = async({ recipeId, commentId }) => {
     try {
         const response = await fetch(`${baseUrl}/${commentId}/delete`, {
             headers: {
@@ -26,6 +25,25 @@ exports.deleteComment = async({ recipeId, commentId}) => {
             },
             method: 'DELETE',
             body: JSON.stringify({ recipeId })
+        });
+        const result = await response.json();
+        return result;
+    }
+    catch (err) {
+        console.log(err);
+        return { status: 'err' };
+    }
+}
+exports.editComment = async ({ recipeId, commentId, text }) => {
+    
+
+    try {
+        const response = await fetch(`${baseUrl}/${commentId}/edit`, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'PUT',
+            body: JSON.stringify({ recipeId, text })
         });
         const result = await response.json();
         return result;
