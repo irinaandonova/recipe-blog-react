@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getComments } from "../../features/commentSlice";
 import * as recipeService from "../../services/recipeService";
-import * as commentService from "../../services/commentService";
 import * as myRecipeService from "../../services/myRecipesService";
 import Comment from "../Comment/Comment";
 import SingleIngredient from "../AddRecipe/SingleIngredient";
@@ -38,9 +37,7 @@ const Details = () => {
         else {
             throw new Error('Couldnot delete recipe');
         }
-
     }
-
 
     return (
         <section className="recipe-details">
@@ -57,7 +54,7 @@ const Details = () => {
                     <article className="creator-info">
                         {
                             isCreator ?
-                                <button className="delete-btn" onClick={deleteRecipeHandler}>Delete recipe</button>
+                                <button className="basic-btn" onClick={deleteRecipeHandler}>Delete recipe</button>
                                 :
                                 null
                         }
