@@ -15,18 +15,18 @@ const addComment = async (recipeId, userId, comment, username) => {
         return { status: 'err', err };
     }
 }
-const editComment = async ({ _id, commentId, userId, text }) => {
+const editComment = async ({ commentId, recipeId, text }) => {
     try {
-        const recipe = await Recipe.findById({ _id });
+        
+        const recipe = await Recipe.findById({ _id: recipeId });
 
-        if (recipe.userId !== userId) {
-            return { status: 'err', err: 'Unauthorized reqest!' };
-        }
-        const comment = recipe.comments.filter(x => x._id === commentId);
-        comment.text = text;
-
+       
+        const commentInfo = recipe.comments.filter(x => x._id.toString() === commentId)[0];
+        commentInfo.comment = text;
+        commentInfo.createdAt = new Date();
+        
         await recipe.save();
-        return { status: 'ok' };
+        return { status: 'ok', comment: commentInfo };
     }
     catch (err) {
         console.log(err);
@@ -38,7 +38,7 @@ const deleteComment = async ({ commentId, recipeId }) => {
         const recipe = await Recipe.findById({ _id: recipeId });
         
         const index = recipe.comments.findIndex(x => x._id.toString() === commentId);
-        console.log(index);
+        
         if (index !== -1) {
             recipe.comments.splice(index, 1);
         }

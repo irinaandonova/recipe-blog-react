@@ -13,12 +13,12 @@ router.post('/add', async (req, res) => {
         res.json({ status: 'err', err });
     }
 });
-router.post('/:_id/edit', async(req, res) => {
-    const { _id } = req.params;
-    const { commentId, userId, text } = req.body;
-
+router.put('/:commentId/edit', async(req, res) => {
+    const { commentId } = req.params;
+    const { text, recipeId } = req.body;
+   
     try {
-        const result = await commentService.editComment(_id, userId, text);
+        const result = await commentService.editComment({ commentId, recipeId, text });
         res.json(result);
     }
     catch (err) {
