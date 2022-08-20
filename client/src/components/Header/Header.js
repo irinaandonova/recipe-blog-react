@@ -14,22 +14,22 @@ const Header = () => {
 
 
                         <li className='header-link'>
-                            <Link to="/auth/login" className='upper-link'>Login</Link>
+                            <Link to="/auth/login" className='basic-btn'>Login</Link>
                         </li>
                         <li className='header-link'>
-                            <Link to="/auth/register" className='upper-link'>Register</Link>
+                            <Link to="/auth/register" className='basic-btn'>Register</Link>
                         </li>
                     </ul>
                     :
                     <ul className='header-list'>
                         <li className='header-link'>
-                            <Link to="/recipe/my-recipes" className='upper-link'>My recipes</Link>
+                            <Link to="/recipe/my-recipes" className='basic-btn'>My recipes</Link>
                         </li>
                         <li className='header-link'>
-                            <Link to="/recipe/add/info" className='upper-link'>Add recipe</Link>
+                            <Link to="/recipe/add/info" className='basic-btn'>Add recipe</Link>
                         </li>
-                        <li className='header-link right'>
-                            <Link to="#" className='logout-btn upper-link' onClick={logout}>Logout</Link>
+                        <li className='header-link'>
+                            <Link to="#" className='basic-btn' onClick={logout}>Logout</Link>
                         </li>
                     </ul>
                 }
