@@ -23,7 +23,7 @@ const Details = () => {
         recipeService.getOne(_id)
             .then(res => {
                 setRecipeInfo(res.recipe);
-                dispatch(getComments({ recipeId: _id, comments: res.recipe.comments }));
+                dispatch(getComments({ comments: res.recipe.comments }));
                 res.recipe.userId.toString() === userInfo._id ? setIsCreator(true) : setIsCreator(false);
             })
             .catch(err => console.log(err))
@@ -48,7 +48,7 @@ const Details = () => {
                         <p>Category: {recipeInfo.category}</p>
                         <p>Portion: {recipeInfo.portions}</p>
                     </article>
-                    {recipeInfo.ingredients ? recipeInfo.ingredients.map(x => <SingleIngredient ingredient={x} key={x.ingredientName + x.metric} />) : null}
+                    {recipeInfo.ingredients ? recipeInfo.ingredients.map(x => <SingleIngredient ingredient={x} editable={false} key={x.ingredientName + x.metric} />) : null}
                     <p>Instructions:</p>
                     <p>{recipeInfo.instructions}</p>
                     <article className="creator-info">
@@ -58,7 +58,7 @@ const Details = () => {
                                 :
                                 null
                         }
-                        <p className="creator">Created by: {recipeInfo.username}</p>
+                        <p className="creator">Created by: {recipeInfo.createdBy}</p>
                     </article>
                 </article>
 
