@@ -21,28 +21,26 @@ const Comment = ({ comment }) => {
             console.log(err);
         }
     }
-const editCommentBlock = () => setOnEdit(true);
+    const editCommentBlock = () => setOnEdit(true);
+
     const editCommentHandler = async (e) => {
         e.preventDefault();
         try {
             const formData = new FormData(e.target);
             const text = formData.get('comment');
-            
+
             let response = await commentService.editComment({ recipeId: _id, text, commentId: comment._id });
-            console.log(response);
             if (response.status === 'ok') {
                 dispatch(editComment({ comment: response.comment }));
                 setOnEdit(false);
-
-               
             }
         }
-        catch(err) {
+        catch (err) {
             console.log(err);
         }
-        
+
     }
-    
+
     return (
         <article className="single-comment-article">
             <p className="user-comment">{comment.username}</p>
