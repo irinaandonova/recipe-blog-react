@@ -1,0 +1,1 @@
+My project is a recipe blog that can by used by authorized and unauthorized users. The unauthorized users can access the login and register forms. They also can look through the recipes. Authorized users can create new recipe and they can access a page with all of their create recipes. They also can add camments and then they can edit and remove them
