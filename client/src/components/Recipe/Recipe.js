@@ -7,7 +7,9 @@ const Recipe = ({ recipe }) => {
     }
     return(
         <article className="recipe" onClick={navigateHandler}>
+            <article className='img-article'>
             <img src={recipe.image} className="dashboard-recipe-image"/>
+            </article>
             <p className="recipe-name">{recipe.name}</p>
         </article>
     )
