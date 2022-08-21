@@ -13,13 +13,11 @@ const MyRecipes = () => {
     }, [userInfo])
     return (
         <section className="recipes-section">
-            <ul>
-                {
-                    myRecipes.length > 0 ?
-                        myRecipes.map(x => <Recipe recipe={x} key={x._id} />)
-                        :
-                        <p className="no-recipes-message">No recipes yet</p>}
-            </ul>
+            {
+                myRecipes.length > 0 ?
+                    myRecipes.map(x => <Recipe recipe={x} key={x._id} />)
+                    :
+                    <p className="no-recipes-message">No recipes yet</p>}
         </section>
     )
 }

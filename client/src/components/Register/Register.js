@@ -1,14 +1,13 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../context/authContext";
 
 const Register = () => {
-    const { register } = useContext(AuthContext)
+    const { register } = useContext(AuthContext);
     const navigate = useNavigate();
-
+   
     const registerHandler = async(e) => {
         e.preventDefault();
-        console.log('here');
         const formData = new FormData(e.target);
         const username = formData.get('username');
         const email = formData.get('email');
@@ -17,35 +16,29 @@ const Register = () => {
         const user = {
             username, password, email
         }
-        console.log(user);
-            if(!username || !email || !password) {
-                throw new Error('All fields must be filled!');
-            }
-            if(password === rePassword ) {
-                
+        
+            if(password === rePassword ) {                
                 const response = await register(user);
-                console.log(response)
+               
                 if(response.status === 'err') {
                     throw new Error('Connot register!');
                 }
                 navigate('/');
             } 
             else {
-                console.log(password);
-                console.log(rePassword);
-                throw new Error('Pasword mismatch')
+                alert('Pasword mismatch!')
             }        
 
     }
     return (
         <section className="auth-section">
-            <form className="auth-form" onSubmit={registerHandler}>
+            <form className="basic-form" onSubmit={registerHandler}>
                 <label htmlFor="username" >Username:</label>
-                <input name="username" type="string" />
+                <input name="username" type="string" minLength={4}/>
                 <label htmlFor="email">Email:</label>
                 <input name="email" type="email" />
                 <label htmlFor="password" >Password:</label>
-                <input name="password" type="password"/>
+                <input name="password" type="password" minLength={4}/>
                 <label htmlFor="rePassword" >Repeat password:</label>
                 <input name="rePassword" type="password"/>
                 <button type="submit">Register</button>

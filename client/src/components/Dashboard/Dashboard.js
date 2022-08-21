@@ -11,7 +11,7 @@ const Dashboard = () => {
         recipeService.getRecipes(category)
             .then(res => setRecipes(res.recipes))
             .catch(err => console.log(err))
-    },[category])
+    }, [category])
     return (
         <section className="recipes-section">
             {
