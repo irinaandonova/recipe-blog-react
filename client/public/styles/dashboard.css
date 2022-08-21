@@ -12,10 +12,14 @@
     border: 4px solid;
     padding: 15px;
     padding-bottom: 0px;
+    margin-left: 5px;
 }
 .recipe-name {
     font-weight: bold;
 }
 .no-recipes-message {
     text-align: center;
+}
+.img-article {
+    height: 70%;
 }

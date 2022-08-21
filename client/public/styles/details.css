@@ -31,3 +31,6 @@
     display: flex;
     justify-content: space-between;
 }
+.likes-article {
+    text-align: center;
+}
