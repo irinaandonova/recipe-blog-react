@@ -2,14 +2,15 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import AuthContext from "../../context/authContext";
-import { addRecipeInfo } from "../../features/recipeSlice";
+import { addRecipeInfo, clearState } from "../../features/recipeSlice";
 
 
 const AddRecipeInfo = () => {
     const { userInfo } = useContext(AuthContext);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
+    dispatch(clearState());
+    
     const addRecipeInfoHandler = (e) => {
         e.preventDefault();
 
@@ -23,9 +24,9 @@ const AddRecipeInfo = () => {
     }
     return (
         <section className="add-recipe-section">
-            <form className="add-recipe-form" onSubmit={addRecipeInfoHandler}>
+            <form className="basic-form" onSubmit={addRecipeInfoHandler}>
                 <label htmlFor="name">Recipe name:</label>
-                <input name="name" type="string" />
+                <input name="name" type="string" minLength={2}/>
                 <label htmlFor="portions">Portions:</label>
                 <input name="portions" type="number" min={1} />
                 <label htmlFor="image">Image:</label>

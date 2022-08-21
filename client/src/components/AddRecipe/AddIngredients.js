@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addIngredient, createRecipe } from "../../features/recipeSlice";
+import { addIngredient } from "../../features/recipeSlice";
 import SingleIngredient from "./SingleIngredient";
 import * as recipeService from "../../services/recipeService";
 
@@ -21,6 +21,7 @@ const AddIngredient = () => {
             metric
         }
         dispatch(addIngredient(ingredient));
+        e.target.reset();
     }
 
     const createRecipeHandler = async (e) => {
@@ -36,7 +37,6 @@ const AddIngredient = () => {
         const response = await recipeService.createRecipe(recipeInfo, instructions);
 
         if (response.status === 'ok') {
-            dispatch(createRecipe());
             navigate('/recipe/my-recipes');
         }
         else {
@@ -45,24 +45,24 @@ const AddIngredient = () => {
     }
     return (
         <section className="add-ingredients-section">
-            <form className="add-ingredient-form" onSubmit={addIngredientHandler}>
+            <form className="basic-form" onSubmit={addIngredientHandler}>
                 <label htmlFor="ingredient-name">Ingredient name:</label>
-                <input name="ingredientName" type="string" />
+                <input name="ingredientName" type="string" minLength={2}/>
                 <label htmlFor="metric">Metric:</label>
-                <input name="metric" type="string" />
+                <input name="metric" type="string" minLength={1}/>
                 <button type="submit">Add ingredient</button>
             </form>
             <ul>
                 {ingredientsArray.length > 0 ?
-                    ingredientsArray.map((x, index) => <SingleIngredient ingredient={x} key={x.name + index + new Date()}/>)
+                    ingredientsArray.map((x, index) => <SingleIngredient ingredient={x} editable={true} key={x.name + index + new Date()}/>)
                     :
                     null
                 }
             </ul>
-            <form onSubmit={createRecipeHandler}>
+            <form onSubmit={createRecipeHandler} className="add-instructions-form">
                 <p>Add instrictions:</p>
-                <textarea name="instructions"></textarea>
-                <button type="submit">Create recipe</button>
+                <textarea name="instructions" className="instructions"></textarea>
+                <button type="submit" className="submit-recipe" >Create recipe</button>
             </form>
         </section>
 
