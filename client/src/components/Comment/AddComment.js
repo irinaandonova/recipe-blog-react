@@ -20,7 +20,7 @@ const AddComment = ({recipeId}) => {
         }
         let response = await commentService.addComment({ commentInfo });
         if (response.status === 'ok') {
-            
+            e.target.reset();
             dispatch(addComment({comment: response.comment}));
         }
     }
