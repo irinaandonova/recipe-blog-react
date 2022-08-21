@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    name: "",
+    name: '',
     portions: 0,
     userId: '',
     createdBy: '',
@@ -26,7 +26,14 @@ export const recipeSlice = createSlice({
         addIngredient: (state, action) => {
             state.ingredients.push(action.payload);
         },
-        createRecipe: () => initialState,
+        removeIngredient: (state, action) => {
+            const index = state.ingredients.findIndex(x => x.name === action.payload.name && x.metric === action.payload.metric);
+            
+            if(index !== -1) {
+                state.ingredients.splice(index, 1);
+            }
+        },
+        clearState: () => initialState,
         addInstructions: (state, action) => {
             state.instructions = action.payload;
             console.log(state.instructions);
@@ -34,5 +41,5 @@ export const recipeSlice = createSlice({
     }
 })
 
-export const { addRecipeInfo, addIngredient, createRecipe, addInstructions } = recipeSlice.actions;
+export const { addRecipeInfo, addIngredient, removeIngredient, clearState, addInstructions } = recipeSlice.actions;
 export default recipeSlice.reducer;
