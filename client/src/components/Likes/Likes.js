@@ -6,36 +6,35 @@ import * as recipeService from "../../services/recipeService";
 import { likeRecipe } from "../../features/likeSlice";
 const Likes = () => {
     const { userInfo } = useContext(AuthContext);
-    const { _id } = useParams(); 
+    const { _id } = useParams();
     const likes = useSelector((state) => state.likes);
     const dispatch = useDispatch();
 
     const likeRecipeHandler = async () => {
         try {
             const response = await recipeService.likeRecipe({ _id, userId: userInfo._id });
-            dispatch(likeRecipe({ userId: userInfo._id }))
-
+            dispatch(likeRecipe({ userId: userInfo._id }));
         }
-        catch(err) {
+        catch (err) {
             console.log(err);
-        }        
+        }
     }
     const likesMessage = () => {
         let message = ''
-        if(likes.likes.length < 1) {
+        if (likes.likes.length < 1) {
             message = <p>Nobody has liked this recipe yet!</p>
         }
         else {
-            if(likes.hasLiked && likes.likes.length == 1) {
+            if (likes.hasLiked && likes.likes.length == 1) {
                 message = <p>Only you have liked this recipe by far.</p>
             }
-            else if(likes.hasLiked && likes.likes.length === 2) {
+            else if (likes.hasLiked && likes.likes.length === 2) {
                 message = <p>'You and one other person have liked this recipe</p>
             }
-            else if(likes.hasLiked && likes.likes.length > 2) {
+            else if (likes.hasLiked && likes.likes.length > 2) {
                 message = <p>You and {likes.likes.length - 1} people have liked this recipe</p>
             }
-            else if(!likes.hasLiked && likes.likes.length === 1) {
+            else if (!likes.hasLiked && likes.likes.length === 1) {
                 message = <p>One person has liked this recipe</p>
             }
             else {
@@ -43,16 +42,22 @@ const Likes = () => {
             }
         }
         return message;
+    };
+    const likeButtons = () => {
+        if (userInfo._id && likes.hasLiked) {
+            return <button className="basic-btn" onClick={likeRecipeHandler}>Remove recipe from likes?</button>
+        }
+        else if (userInfo._id && !likes.hasLiked) {
+            return <button className="basic-btn" onClick={likeRecipeHandler}>Like this recipe</button>
+        }
+        else {
+            return <p>LOgin to your profile to like this recipe</p>
+        }
     }
     return (
         <article className="likes-article" >
             {likesMessage()}
-            {
-                likes.hasLiked ?
-                    <button className="basic-btn" onClick={likeRecipeHandler}>Remove recipe from likes?</button>
-                    :
-                    <button className="basic-btn" onClick={likeRecipeHandler}>Like this recipe</button>
-            }
+            {likeButtons()}
         </article>
     )
 }
