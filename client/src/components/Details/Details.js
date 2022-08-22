@@ -8,7 +8,8 @@ import Comment from "../Comment/Comment";
 import SingleIngredient from "../AddRecipe/SingleIngredient";
 import AuthContext from "../../context/authContext";
 import AddComment from "../Comment/AddComment";
-
+import Likes from "../Likes/Likes";
+import { getLikes } from "../../features/likeSlice";
 const Details = () => {
     const [recipeInfo, setRecipeInfo] = useState({});
     const [isCreator, setIsCreator] = useState(false);
@@ -24,6 +25,7 @@ const Details = () => {
             .then(res => {
                 setRecipeInfo(res.recipe);
                 dispatch(getComments({ comments: res.recipe.comments }));
+                dispatch(getLikes({ userId: userInfo._id, recipeId: _id, likes: res.recipe.likes }));
                 res.recipe.userId.toString() === userInfo._id ? setIsCreator(true) : setIsCreator(false);
             })
             .catch(err => console.log(err))
@@ -62,7 +64,7 @@ const Details = () => {
                     </article>
                 </article>
             </article>
-
+            <Likes />
             <article className="add-comment">
                 {
                     userInfo._id ?
