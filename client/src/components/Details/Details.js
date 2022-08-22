@@ -48,7 +48,7 @@ const Details = () => {
                         <p>Category: {recipeInfo.category}</p>
                         <p>Portion: {recipeInfo.portions}</p>
                     </article>
-                    {recipeInfo.ingredients ? recipeInfo.ingredients.map(x => <SingleIngredient ingredient={x} editable={false} key={x.ingredientName + x.metric} />) : null}
+                    {recipeInfo.ingredients ? recipeInfo.ingredients.map(x => <SingleIngredient ingredient={x} editable={false} key={x._id} />) : null}
                     <p>Instructions:</p>
                     <p>{recipeInfo.instructions}</p>
                     <article className="creator-info">
@@ -61,7 +61,6 @@ const Details = () => {
                         <p className="creator">Created by: {recipeInfo.createdBy}</p>
                     </article>
                 </article>
-
             </article>
 
             <article className="add-comment">
