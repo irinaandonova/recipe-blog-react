@@ -10,27 +10,48 @@ const Likes = () => {
     const likes = useSelector((state) => state.likes);
     const dispatch = useDispatch();
 
-    const likeRecipe = async () => {
-        const response = await recipeService.likeRecipe({ _id, userId: userInfo._id });
+    const likeRecipeHandler = async () => {
+        try {
+            const response = await recipeService.likeRecipe({ _id, userId: userInfo._id });
+            dispatch(likeRecipe({ userId: userInfo._id }))
 
-        if (response.status === 'ok') {
-            dispatch(likeRecipe({ userId: userInfo._id }));
         }
+        catch(err) {
+            console.log(err);
+        }        
     }
-    
+    const likesMessage = () => {
+        let message = ''
+        if(likes.likes.length < 1) {
+            message = <p>Nobody has liked this recipe yet!</p>
+        }
+        else {
+            if(likes.hasLiked && likes.likes.length == 1) {
+                message = <p>Only you have liked this recipe by far.</p>
+            }
+            else if(likes.hasLiked && likes.likes.length === 2) {
+                message = <p>'You and one other person have liked this recipe</p>
+            }
+            else if(likes.hasLiked && likes.likes.length > 2) {
+                message = <p>You and {likes.likes.length - 1} people have liked this recipe</p>
+            }
+            else if(!likes.hasLiked && likes.likes.length === 1) {
+                message = <p>One person has liked this recipe</p>
+            }
+            else {
+                message = <p>{likes.likes.length} people have liked this recipe</p>
+            }
+        }
+        return message;
+    }
     return (
         <article className="likes-article" >
-            {
-                likes.likes.length < 1 ?
-                    <p>Nobody has liked this recipe yet!</p>
-                    :
-                    <p>{likes.length} people have liked this recipe</p>
-            }
+            {likesMessage()}
             {
                 likes.hasLiked ?
-                    <button className="basic-btn" onClick={likeRecipe}>Remove recipe from likes?</button>
+                    <button className="basic-btn" onClick={likeRecipeHandler}>Remove recipe from likes?</button>
                     :
-                    <button className="basic-btn" onClick={likeRecipe}>Like this recipe</button>
+                    <button className="basic-btn" onClick={likeRecipeHandler}>Like this recipe</button>
             }
         </article>
     )

@@ -8,24 +8,23 @@ const likesSlice = createSlice({
         getLikes: (state, action) => {
             state.hasLiked = false;
             state.likes = action.payload.likes;
+
             const index = state.likes.findIndex(x => x.toString() === action.payload.userId);
-            if (index !== -1) {
+            if (index > -1) {
                 state.hasLiked = true;
             }
         },
         likeRecipe: (state, action) => {
-            if (state.hasLiked) {
-                const index = state.likes.findIndex(x => x.toString() === action.payload.userId);
-                if (index !== -1) {
-                    state.likes.splice(index, 1);
-                }
-                state.hasLiked = false;
-            }
-            else {
-                state.likes.push(action.payload.like);
+            const index = state.likes.findIndex(x => x.toString() === action.payload.userId);
+            if(index === -1) {
+                state.likes.push(action.payload.userId);
                 state.hasLiked = true;
             }
-        },
+            else {
+                state.likes.splice(index, 1);
+                state.hasLiked = false;
+            }
+        }
 
 
     }
