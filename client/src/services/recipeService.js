@@ -48,9 +48,8 @@ exports.getOne = async (_id) => {
         return { status: 'err' };
     }
 }
-/*
+
 exports.likeRecipe = async ({ _id, userId }) => {
-    console.log(userId);
     try {
         const response = await fetch(`${baseUrl}/${_id}/like`, {
             headers: {
@@ -60,7 +59,7 @@ exports.likeRecipe = async ({ _id, userId }) => {
             body: JSON.stringify({ userId })
         });
         let result = await response.json();
-        console.log(result);
+
         return result;
     }
     catch (err) {
@@ -68,5 +67,34 @@ exports.likeRecipe = async ({ _id, userId }) => {
         return { status: 'err' };
     }
 }
+exports.getLikedRecipes = async (_id) => {
+    try {
+        const response = await fetch(`${baseUrl}/${_id}/liked-recipes`);
+        let result = await response.json();
 
-*/
+        return result;
+    }
+    catch (err) {
+        console.log(err);
+        return { status: 'err' };
+    }
+}
+exports.rateRecipe = async ({ ratingInfo }) => {
+    try {
+        const response = await fetch(`${baseUrl}/vote`, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: JSON.stringify({ ratingInfo })
+        });
+
+        let result = await response.json();
+
+        return result;
+    }
+    catch (err) {
+        console.log(err);
+        return { status: 'err' };
+    }
+}
