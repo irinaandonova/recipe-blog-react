@@ -8,6 +8,8 @@ import AddRecipeInfo from './components/AddRecipe/AddRecipeInfo';
 import AddIngredients from './components/AddRecipe/AddIngredients';
 import Details from './components/Details/Details';
 import MyRecipes from './components/MyRecipes/MyRecipes';
+import LikedRecipes from './components/LikedRecipes/LikedRecipes';
+import StarRating from './components/StarRating/StarRating';
 
 function App() {
   return (
@@ -21,8 +23,10 @@ function App() {
           <Route path='/recipe/add/info' element={<AddRecipeInfo />} />
           <Route path='/recipe/add/ingredients' element={<AddIngredients />} />
           <Route path='/recipe/:_id' element={<Details />} />
-          <Route path='/recipe/my-recipes' element={<MyRecipes />} />
+          <Route path='/:_id/my-recipes' element={<MyRecipes />} />
           <Route path='/categories/:category' element={<Dashboard />} />
+          <Route path='/:_id/liked-recipes' element={<LikedRecipes />} />
+          <Route path='/star' element={<StarRating />} />
         </Routes>
       </AuthContextProvider>
     </div>
