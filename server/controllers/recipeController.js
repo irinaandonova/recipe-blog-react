@@ -57,7 +57,7 @@ router.post('/:_id/like', async (req, res) => {
 });
 router.get('/:category', async(req, res) => {
     const { category } = req.params;
-    console.log(category);
+    
     try {
         let result = await recipeService.getRecipes(category);
         res.json(result);
@@ -66,6 +66,30 @@ router.get('/:category', async(req, res) => {
         console.log(err);
         res.json({ status: 'err', err });
     } 
+});
+router.get('/:_id/liked-recipes', async (req, res) => {
+    const { _id } = req.params;
+    
+    try {
+        let result = await recipeService.getLikedRecipes(_id);
+        res.json(result);
+    }
+    catch (err) {
+        console.log(err);
+        res.json({ status: 'err', err });
+    } 
+});
+router.post('/vote', async (req, res) => {
+    const { recipeId, userId, rating } = req.params.ratingInfo;
+    
+    try {
+        let result = await recipeService.rateRecipe({ recipeId, userId, rating });
+        res.json(result);
+    }
+    catch (err) { 
+        console.log(err);
+        res.json({ status: 'err', err });
+    }  
 })
 
 module.exports = router;
