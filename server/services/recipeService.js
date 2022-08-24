@@ -1,10 +1,10 @@
 const Recipe = require("../models/Recipe.js");
 
-const getRecipes = async(category) => {
-    
+const getRecipes = async (category) => {
+
     try {
         let recipes = await Recipe.find().lean();
-        if(category) {
+        if (category) {
             recipes = recipes.filter(x => x.category === category);
         }
         return { status: 'ok', recipes };
@@ -14,15 +14,15 @@ const getRecipes = async(category) => {
         return { status: 'err', err };
     }
 }
-const getOne = async(_id) => {
+const getOne = async (_id) => {
     try {
-        const recipe = await Recipe.findById({  _id });
+        const recipe = await Recipe.findById({ _id });
         return { status: 'ok', recipe };
     }
     catch (err) {
         console.log(err);
         return { status: 'err', err };
-    }  
+    }
 }
 const createRecipe = async ({ name, userId, createdBy, portions, image, category, instructions, ingredients }) => {
     try {
@@ -65,12 +65,48 @@ const likeRecipe = async ({ userId, _id }) => {
         return { status: 'err', err };
     }
 }
+const getLikedRecipes = async (_id) => {
+    try {
+        const allRecipes = await Recipe.find({}).lean();
+        const likedRecipes = allRecipes.filter(x => x.likes = _id.toString());
+
+        return { status: 'ok', likedRecipes };
+    }
+    catch (err) {
+        console.log(err);
+        return { status: 'err', err };
+    }
+}
+const rateRecipe = async ({ recipeId, userId, rating }) => {
+    try {
+        const recipe = await Recipe.findById({ _id: recipeId });
+
+
+        const index = recipeRatings.ratings.findIndex(x => x.userId.toString === userId);
+
+        if (index === -1) {
+            recipe.ratings.push({ userId, rating });
+        }
+        else {
+            recipe.rating[index].splice(index, 1, rating);
+        }
+
+        await recipe.save();
+        return { status: 'err', rating: recipe.rating };
+    }
+    catch (err) {
+        console.log(err);
+        return { status: 'err', err };
+    }
+}
 
 const recipeService = {
     getRecipes,
     getOne,
     createRecipe,
     likeRecipe,
+    getLikedRecipes,
+    rateRecipe
 }
 
 module.exports = recipeService;
