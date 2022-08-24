@@ -4,11 +4,15 @@ import { useParams } from "react-router-dom";
 import AuthContext from "../../context/authContext";
 import * as recipeService from "../../services/recipeService";
 import { likeRecipe } from "../../features/likeSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {  faThumbsUp, faSolid } from "@fortawesome/free-solid-svg-icons";
+
 const Likes = () => {
     const { userInfo } = useContext(AuthContext);
     const { _id } = useParams();
     const likes = useSelector((state) => state.likes);
     const dispatch = useDispatch();
+    const thumbsUp =  <FontAwesomeIcon icon={ faThumbsUp } />
 
     const likeRecipeHandler = async () => {
         try {
@@ -45,10 +49,10 @@ const Likes = () => {
     };
     const likeButtons = () => {
         if (userInfo._id && likes.hasLiked) {
-            return <button className="basic-btn" onClick={likeRecipeHandler}>Remove recipe from likes?</button>
+            return <button className="basic-btn" onClick={likeRecipeHandler}>{thumbsUp}</button>
         }
         else if (userInfo._id && !likes.hasLiked) {
-            return <button className="basic-btn" onClick={likeRecipeHandler}>Like this recipe</button>
+            return <button className="basic-btn like" onClick={likeRecipeHandler}>{thumbsUp}</button>
         }
         else {
             return <p>LOgin to your profile to like this recipe</p>
