@@ -67,8 +67,22 @@ const recipeSchema = new mongoose.Schema({
         ],
         likes: {
             type: Array
+        },
+        rating: [
+            {
+                userId: {
+                    type: mongoose.Types.ObjectId,
+                    ref: 'User',
+                    required: true
+                },
+                rating: {
+                    type: Number,
+                    raquired: true
+                
+            }
         }
-    }, );
+        ],
+    });
 
 const Recipe = mongoose.model('Recipe', recipeSchema);
 module.exports = Recipe;
