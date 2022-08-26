@@ -4,7 +4,8 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as recipeService from "../../services/recipeService";
-
+import { rateRecipe } from "../../features/ratingSlice";
+import { useParams } from "react-router-dom";
 
 const blackStar = <FontAwesomeIcon icon={faStar} color={'#020202'}/>;
 const whiteStar = <FontAwesomeIcon icon={faStar} color={'#cac6c6'}/>;
@@ -12,22 +13,29 @@ const whiteStar = <FontAwesomeIcon icon={faStar} color={'#cac6c6'}/>;
 
 const StarRating = () => {
     const { userInfo } = useContext(AuthContext);
+    const { _id } = useParams();
+
     const dispatch = useDispatch();
-    const rating = useSelector((state) => state.rating.rating);
-    console.log(rating);
+    const rating = useSelector((state) => state.rating);
+    
     const onVoteHandler = async (e) => {
-        const rating = e.value;
+        const ratingValue = e.target.value;
 
-
+        if(!userInfo._id) {
+            return (
+                <p>You need to sign in your profile before logging in!</p>
+            )
+        }
         const ratingInfo = {
             userId: userInfo._id,
-            rating
+            rating: ratingValue,
+            recipeId: _id
         }
         try {
-            const response = await recipeService.rateRecipe([ratingInfo]);
+            const response = await recipeService.rateRecipe({ ratingInfo });
 
             if (response.status === 'ok') {
-                dispatch()
+                dispatch(rateRecipe({ userId: userInfo._id, rating: ratingValue }));
             }
         }
         catch (err) {
@@ -37,26 +45,24 @@ const StarRating = () => {
     }
 
     return (
-        <article className="star-rating-article">
-            {
-                [...Array(5)].map((x, index) => {
+        <article className="stars-article">
+                {[...Array(5)].map((star, index) => {
                     const ratingValue = index + 1;
-                    ratingValue <= rating ?
-                        x =
-                        <label htmlFor="rating" className="star-label">
-                            <input type="radio" name="rating" className="star-btn"  value={ratingValue}/>
-                            {blackStar}
+                    index < rating.rating ?
+                        star =
+                        <label className="star-label" key={index}>
+                            <input type="radio" className="star-btn" value={ratingValue} onClick={onVoteHandler} />
+                            <FontAwesomeIcon icon={faStar} color={'#020202;'} />
                         </label>
                         :
-                        x =
-                        <label htmlFor="rating" className="star-label">
-                            <input type="radio" name="rating" className="star-btn" value={ratingValue}/>
-                            {whiteStar}
+                        star =
+                        <label className="star-label">
+                            <input type="radio" className="star-btn white" value={ratingValue} onClick={onVoteHandler} />
+                            <FontAwesomeIcon icon={faStar} color={'#cac6c6'} />
                         </label>
-                    return x;
-                })
-            }
-        </article>
+                    return star;
+                })}
+            </article>
     )
 
 
