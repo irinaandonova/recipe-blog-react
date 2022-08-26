@@ -10,6 +10,8 @@ import AuthContext from "../../context/authContext";
 import AddComment from "../Comment/AddComment";
 import Likes from "../Likes/Likes";
 import { getLikes } from "../../features/likeSlice";
+import StarRating from "../StarRating/StarRating";
+import { getRating } from "../../features/ratingSlice";
 const Details = () => {
     const [recipeInfo, setRecipeInfo] = useState({});
     const [isCreator, setIsCreator] = useState(false);
@@ -26,6 +28,7 @@ const Details = () => {
                 setRecipeInfo(res.recipe);
                 dispatch(getComments({ comments: res.recipe.comments }));
                 dispatch(getLikes({ userId: userInfo._id, recipeId: _id, likes: res.recipe.likes }));
+                dispatch(getRating({ ratingArr: res.recipe.rating }))
                 res.recipe.userId.toString() === userInfo._id ? setIsCreator(true) : setIsCreator(false);
             })
             .catch(err => console.log(err))
@@ -65,6 +68,7 @@ const Details = () => {
                 </article>
             </article>
             <Likes />
+            <StarRating />
             <article className="add-comment">
                 {
                     userInfo._id ?
