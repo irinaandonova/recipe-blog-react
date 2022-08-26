@@ -55,7 +55,7 @@ const Likes = () => {
             return <button className="basic-btn like" onClick={likeRecipeHandler}>{thumbsUp}</button>
         }
         else {
-            return <p>LOgin to your profile to like this recipe</p>
+            return <p>Login to your profile to like this recipe</p>
         }
     }
     return (
