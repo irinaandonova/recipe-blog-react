@@ -37,3 +37,13 @@
 .like {
     background-color: white;
 }
+.star-btn {
+    display: none;
+}
+.star-label {
+    border: none; 
+    padding: 5px;
+}
+.star-rating-article {
+    display: flex;
+}
