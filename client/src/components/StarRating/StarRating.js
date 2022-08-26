@@ -2,18 +2,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AuthContext from "../../context/authContext";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as recipeService from "../../services/recipeService";
 
 
-const star = <FontAwesomeIcon icon={faStar} />;
+const blackStar = <FontAwesomeIcon icon={faStar} color={'#020202'}/>;
+const whiteStar = <FontAwesomeIcon icon={faStar} color={'#cac6c6'}/>;
+
 
 const StarRating = () => {
     const { userInfo } = useContext(AuthContext);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const rating = useSelector((state) => state.rating.rating);
+    console.log(rating);
     const onVoteHandler = async (e) => {
         const rating = e.value;
-        console.log(rating);
+
 
         const ratingInfo = {
             userId: userInfo._id,
@@ -35,12 +39,22 @@ const StarRating = () => {
     return (
         <article className="star-rating-article">
             {
-                [...Array(5).map((x, index) => {
-                    <label htmlFor="rating">
-                        <input type="radio" name="rating"/>
-                        {star}
-                    </label>
-                })]
+                [...Array(5)].map((x, index) => {
+                    const ratingValue = index + 1;
+                    ratingValue <= rating ?
+                        x =
+                        <label htmlFor="rating" className="star-label">
+                            <input type="radio" name="rating" className="star-btn"  value={ratingValue}/>
+                            {blackStar}
+                        </label>
+                        :
+                        x =
+                        <label htmlFor="rating" className="star-label">
+                            <input type="radio" name="rating" className="star-btn" value={ratingValue}/>
+                            {whiteStar}
+                        </label>
+                    return x;
+                })
             }
         </article>
     )
