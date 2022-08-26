@@ -80,8 +80,8 @@ router.get('/:_id/liked-recipes', async (req, res) => {
     } 
 });
 router.post('/vote', async (req, res) => {
-    const { recipeId, userId, rating } = req.params.ratingInfo;
-    
+    const { recipeId, userId, rating } = req.body.ratingInfo;
+
     try {
         let result = await recipeService.rateRecipe({ recipeId, userId, rating });
         res.json(result);

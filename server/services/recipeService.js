@@ -81,18 +81,17 @@ const rateRecipe = async ({ recipeId, userId, rating }) => {
     try {
         const recipe = await Recipe.findById({ _id: recipeId });
 
-
-        const index = recipeRatings.ratings.findIndex(x => x.userId.toString === userId);
-
+        
+        const index = recipe.rating.findIndex(x => x.userId.toString() === userId);
         if (index === -1) {
-            recipe.ratings.push({ userId, rating });
+            recipe.rating.push({ userId, rating });
         }
         else {
-            recipe.rating[index].splice(index, 1, rating);
+            recipe.rating.splice(index, 1, {recipeId, userId, rating});
         }
 
         await recipe.save();
-        return { status: 'err', rating: recipe.rating };
+        return { status: 'ok', rating: recipe.rating };
     }
     catch (err) {
         console.log(err);
