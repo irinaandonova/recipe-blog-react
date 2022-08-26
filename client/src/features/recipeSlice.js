@@ -36,7 +36,6 @@ export const recipeSlice = createSlice({
         clearState: () => initialState,
         addInstructions: (state, action) => {
             state.instructions = action.payload;
-            console.log(state.instructions);
         }
     }
 })

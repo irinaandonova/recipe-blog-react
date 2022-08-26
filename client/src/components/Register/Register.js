@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../context/authContext";
 
@@ -27,7 +27,7 @@ const Register = () => {
             } 
             else {
                 alert('Pasword mismatch!')
-            }        
+            }       
 
     }
     return (

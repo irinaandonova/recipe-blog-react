@@ -26,7 +26,6 @@ function App() {
           <Route path='/:_id/my-recipes' element={<MyRecipes />} />
           <Route path='/categories/:category' element={<Dashboard />} />
           <Route path='/:_id/liked-recipes' element={<LikedRecipes />} />
-          <Route path='/star' element={<StarRating />} />
         </Routes>
       </AuthContextProvider>
     </div>
