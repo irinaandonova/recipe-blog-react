@@ -1,3 +1,6 @@
 .auth-section {
     margin: 50px;
 }
+.auth-label {
+    display: block;
+}
