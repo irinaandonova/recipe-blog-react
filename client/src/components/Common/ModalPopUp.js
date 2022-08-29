@@ -14,7 +14,7 @@ const ModalPopUp = ({ show, warningMessage, onClose, onNavigate }) => {
           {
             onNavigate ?
               <Button variant="secondary" onClick={onNavigate}>
-                Login
+                Sign in
               </Button>
               :
               null
