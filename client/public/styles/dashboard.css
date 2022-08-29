@@ -16,10 +16,14 @@
 }
 .recipe-name {
     font-weight: bold;
+    margin: 15px;
 }
 .no-recipes-message {
     text-align: center;
 }
 .img-article {
     height: 70%;
+}
+.img-article:hover {
+    cursor: pointer;
 }
