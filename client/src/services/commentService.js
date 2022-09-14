@@ -1,6 +1,6 @@
 const baseUrl = 'http://localhost:4000/comment';
 
-exports.addComment = async({ commentInfo }) => {
+exports.addComment = async ({ commentInfo }) => {
     try {
         const response = await fetch(`${baseUrl}/add`, {
             headers: {
@@ -17,7 +17,7 @@ exports.addComment = async({ commentInfo }) => {
         return { status: 'err' };
     }
 }
-exports.deleteComment = async({ recipeId, commentId }) => {
+exports.deleteComment = async ({ recipeId, commentId }) => {
     try {
         const response = await fetch(`${baseUrl}/${commentId}/delete`, {
             headers: {
@@ -27,6 +27,7 @@ exports.deleteComment = async({ recipeId, commentId }) => {
             body: JSON.stringify({ recipeId })
         });
         const result = await response.json();
+
         return result;
     }
     catch (err) {
@@ -35,8 +36,6 @@ exports.deleteComment = async({ recipeId, commentId }) => {
     }
 }
 exports.editComment = async ({ recipeId, commentId, text }) => {
-    
-
     try {
         const response = await fetch(`${baseUrl}/${commentId}/edit`, {
             headers: {
@@ -46,6 +45,7 @@ exports.editComment = async ({ recipeId, commentId, text }) => {
             body: JSON.stringify({ recipeId, text })
         });
         const result = await response.json();
+
         return result;
     }
     catch (err) {

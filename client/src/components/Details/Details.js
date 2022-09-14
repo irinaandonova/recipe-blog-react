@@ -12,6 +12,7 @@ import Likes from "../Likes/Likes";
 import { getLikes } from "../../features/likeSlice";
 import StarRating from "../StarRating/StarRating";
 import { getRatings } from "../../features/ratingSlice";
+
 const Details = () => {
     const [recipeInfo, setRecipeInfo] = useState({});
     const [isCreator, setIsCreator] = useState(false);
@@ -33,6 +34,7 @@ const Details = () => {
             })
             .catch(err => console.log(err))
     }, [_id, dispatch, userInfo]);
+
     const deleteRecipeHandler = async () => {
         const response = await myRecipeService.deleteRecipe({ _id: recipeInfo._id, userId: userInfo._id });
 
@@ -86,7 +88,7 @@ const Details = () => {
                 }
             </article>
         </section>
-    )
+    );
 }
 
 export default Details;

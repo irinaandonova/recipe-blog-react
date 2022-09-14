@@ -21,6 +21,7 @@ const Comment = ({ comment }) => {
             console.log(err);
         }
     }
+
     const editCommentBlock = () => setOnEdit(true);
 
     const editCommentHandler = async (e) => {
@@ -65,7 +66,7 @@ const Comment = ({ comment }) => {
                     null
             }
         </article>
-    )
+    );
 }
 
 export default Comment;

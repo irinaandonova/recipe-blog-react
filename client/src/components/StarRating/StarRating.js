@@ -38,7 +38,6 @@ const StarRating = () => {
         catch (err) {
             console.log(err);
         }
-
     }
 
     return (
@@ -63,11 +62,7 @@ const StarRating = () => {
                 })}
             </article>
         </article>
-
-    )
-
-
-
+    );
 }
 
 export default StarRating;

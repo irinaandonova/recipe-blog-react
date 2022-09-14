@@ -43,18 +43,19 @@ const AddIngredient = () => {
             throw new Error('Couldnot create recipe!')
         }
     }
+
     return (
         <section className="add-ingredients-section">
             <form className="basic-form" onSubmit={addIngredientHandler}>
                 <label htmlFor="ingredient-name">Ingredient name:</label>
-                <input name="ingredientName" type="string" minLength={2}/>
+                <input name="ingredientName" type="string" minLength={2} />
                 <label htmlFor="metric">Metric:</label>
-                <input name="metric" type="string" minLength={1}/>
+                <input name="metric" type="string" minLength={1} />
                 <button type="submit">Add ingredient</button>
             </form>
             <ul>
                 {ingredientsArray.length > 0 ?
-                    ingredientsArray.map((x, index) => <SingleIngredient ingredient={x} editable={true} key={x.name + index + new Date()}/>)
+                    ingredientsArray.map((x, index) => <SingleIngredient ingredient={x} editable={true} key={x.name + index + new Date()} />)
                     :
                     null
                 }
@@ -65,8 +66,7 @@ const AddIngredient = () => {
                 <button type="submit" className="submit-recipe" >Create recipe</button>
             </form>
         </section>
-
-    )
+    );
 }
 
 export default AddIngredient;

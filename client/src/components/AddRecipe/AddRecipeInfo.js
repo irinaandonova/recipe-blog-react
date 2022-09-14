@@ -9,8 +9,9 @@ const AddRecipeInfo = () => {
     const { userInfo } = useContext(AuthContext);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
     dispatch(clearState());
-    
+
     const addRecipeInfoHandler = (e) => {
         e.preventDefault();
 
@@ -19,14 +20,16 @@ const AddRecipeInfo = () => {
         const portions = formData.get('portions');
         const category = formData.get('category');
         const image = formData.get('image');
+
         dispatch(addRecipeInfo({ name, portions, userId: userInfo._id, category, username: userInfo.username, image, createdBy: userInfo.username }));
         navigate('/recipe/add/ingredients');
     }
+
     return (
         <section className="add-recipe-section">
             <form className="basic-form" onSubmit={addRecipeInfoHandler}>
                 <label htmlFor="name">Recipe name:</label>
-                <input name="name" type="string" minLength={2}/>
+                <input name="name" type="string" minLength={2} />
                 <label htmlFor="portions">Portions:</label>
                 <input name="portions" type="number" min={1} />
                 <label htmlFor="image">Image:</label>
@@ -40,7 +43,7 @@ const AddRecipeInfo = () => {
                 <button type="submit" className="add-ngredient-btn">Add ingredients</button>
             </form>
         </section>
-    )
+    );
 }
 
 export default AddRecipeInfo;

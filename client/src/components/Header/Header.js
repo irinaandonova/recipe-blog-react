@@ -5,10 +5,12 @@ import AuthContext from '../../context/authContext';
 const Header = () => {
     const { userInfo, logout } = useContext(AuthContext);
     const navigate = useNavigate();
+
     const logoutHandler = () => {
         logout();
         navigate('/');
     }
+
     return (
         <header>
             <nav className='upper-navbar'>
@@ -59,7 +61,7 @@ const Header = () => {
                 </ul>
             </nav>
         </header>
-    )
+    );
 }
 
 export default Header;

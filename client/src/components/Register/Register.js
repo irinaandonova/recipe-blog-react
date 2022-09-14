@@ -28,8 +28,8 @@ const Register = () => {
         else {
             alert('Pasword mismatch!')
         }
-
     }
+    
     return (
         <section className="auth-section">
             <form className="basic-form" onSubmit={registerHandler}>
@@ -44,7 +44,7 @@ const Register = () => {
                 <button type="submit">Register</button>
             </form>
         </section>
-    )
+    );
 }
 
 export default Register;

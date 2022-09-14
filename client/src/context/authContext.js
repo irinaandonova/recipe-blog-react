@@ -26,7 +26,6 @@ export const AuthContextProvider = ({ children }) => {
             return 'err';
         }
     }
-
     const login = async ({ username, password }) => {
         try {
             const response = await authService.login({ username, password });

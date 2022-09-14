@@ -6,11 +6,13 @@ import Recipe from "../Recipe/Recipe";
 const MyRecipes = () => {
     const [myRecipes, setMyRecipes] = useState([]);
     const { userInfo } = useContext(AuthContext);
+
     useEffect(() => {
         myRecipesService.getAll({ userId: userInfo._id })
             .then(res => setMyRecipes(res))
             .catch(err => console.log(err))
-    }, [userInfo])
+    }, [userInfo]);
+
     return (
         <section className="recipes-section">
             {

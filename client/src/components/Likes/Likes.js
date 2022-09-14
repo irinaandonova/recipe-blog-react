@@ -5,19 +5,22 @@ import AuthContext from "../../context/authContext";
 import * as recipeService from "../../services/recipeService";
 import { likeRecipe } from "../../features/likeSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {  faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import ModalPopUp from "../Common/ModalPopUp";
+
 const Likes = () => {
     const [showModal, setShowModal] = useState(false)
     const { userInfo } = useContext(AuthContext);
     const { _id } = useParams();
     const likes = useSelector((state) => state.likes);
     const dispatch = useDispatch();
-    const thumbsUp =  <FontAwesomeIcon icon={ faThumbsUp } />
+    const thumbsUp = <FontAwesomeIcon icon={faThumbsUp} />
+
     const likeRecipeHandler = async () => {
         try {
             const response = await recipeService.likeRecipe({ _id, userId: userInfo._id });
-            if(response.msg === 'Cannot like own recipe!') {
+
+            if (response.msg === 'Cannot like own recipe!') {
                 setShowModal(true);
                 return;
             }
@@ -62,13 +65,14 @@ const Likes = () => {
             return <p>Login to your profile to like this recipe</p>
         }
     }
+
     return (
         <article className="likes-article" >
-            <ModalPopUp show={showModal} warningMessage="Cannot like own recipe!" onClose={() => setShowModal(false)}/>
+            <ModalPopUp show={showModal} warningMessage="Cannot like own recipe!" onClose={() => setShowModal(false)} />
             {likesMessage()}
             {likeButtons()}
         </article>
-    )
+    );
 }
 
 export default Likes;

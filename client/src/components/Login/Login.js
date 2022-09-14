@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../context/authContext";
+
 const Login = () => {
     const { login } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -16,8 +17,8 @@ const Login = () => {
         if (response === 'ok') {
             navigate('/');
         }
-
     }
+
     return (
         <section className="auth-section">
             <form className="basic-form" onSubmit={loginHandler}>
@@ -28,7 +29,7 @@ const Login = () => {
                 <button type="submit">Login</button>
             </form>
         </section>
-    )
+    );
 }
 
 export default Login;

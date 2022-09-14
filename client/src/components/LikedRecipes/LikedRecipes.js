@@ -22,7 +22,7 @@ const LikedRecipes = () => {
                     <p className="no-recipes-message">No liked recipes yet!</p>
             }
         </section>
-    )
+    );
 }
 
 export default LikedRecipes;

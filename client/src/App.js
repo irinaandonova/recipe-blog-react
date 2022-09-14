@@ -10,6 +10,7 @@ import Details from './components/Details/Details';
 import MyRecipes from './components/MyRecipes/MyRecipes';
 import LikedRecipes from './components/LikedRecipes/LikedRecipes';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
   return (
     <div className="App">

@@ -2,7 +2,8 @@ import { useDispatch } from "react-redux";
 import { removeIngredient } from "../../features/recipeSlice";
 
 const SingleIngredient = ({ ingredient, editable }) => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
     const removeIngredientHandler = () => {
         dispatch(removeIngredient({ ...ingredient }))
     }
@@ -19,7 +20,7 @@ const SingleIngredient = ({ ingredient, editable }) => {
                     null
             }
         </article>
-    )
+    );
 }
 
 export default SingleIngredient;
