@@ -3,47 +3,87 @@
     justify-content: space-around;
     margin-bottom: 10px;
 }
+
 .details-img {
     max-width: 400px;
     max-height: 300px;
     border: 3px solid black;
     padding: 0;
 }
+
 .recipe-details {
     margin: 50px 40px;
 }
+
 .info-article {
     width: 30%;
     background-color: #cccbca30;
     border-radius: 20px;
     padding: 20px;
 }
+
 .category-portions {
     display: flex;
     justify-content: space-between;
 }
+
 .creator {
     display: flex;
     justify-content: flex-end;
     margin: 10px;
 }
+
 .creator-info {
     display: flex;
     justify-content: space-between;
 }
+
 .likes-article {
     text-align: center;
 }
+
 .like {
     background-color: white;
 }
+
 .star-btn {
     display: none;
 }
+
 .star-label {
-    border: none; 
+    border: none;
     padding: 5px;
 }
+
 .star-rating-article {
     display: flex;
+}
+
+.add-comment-btn {
+    display: flex;
+    margin: 20px 15px;
+}
+
+@media screen and (max-width: 360px) and (max-height: 640px) {
+    .recipe-info-article {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .details-img {
+        width: 290px;
+        height: 290px;
+    }
+
+    .category-portions {
+        display: inline-block;
+        width: 100%;
+    }
+
+    .start-article {
+        display: flex;
+        margin: 20px 15px;
+    }
+
+    
 }

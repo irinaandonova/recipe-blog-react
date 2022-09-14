@@ -29,7 +29,7 @@ const AddComment = ({ recipeId }) => {
     return (
         <form className="add-comment-form" onSubmit={addCommentHandler}>
             <textarea name="comment" maxLength={2000} className="comment-textarea"></textarea>
-            <button type="submit">Add comment</button>
+            <button type="submit" className="add-comment-btn">Add comment</button>
         </form>
     );
 }

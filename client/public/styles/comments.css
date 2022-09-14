@@ -2,7 +2,7 @@
     display: block;
     padding: 0.4rem;
     width: 15%;
-    margin: 40px 80px;
+    margin: 40px 40px;
 }
 .add-comment {
     border-top: 2px solid;
@@ -28,4 +28,9 @@
 }
 .comment-created-at {
     text-align: end;
+}
+
+.add-comment-btn {
+    border-radius: 10px;
+    margin-left: 35px;
 }

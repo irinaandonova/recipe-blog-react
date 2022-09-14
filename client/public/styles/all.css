@@ -1,9 +1,11 @@
 .single-ingredient {
     display: flex;
 }
+
 .single-ingredient p {
     margin: 5px;
 }
+
 .basic-btn {
     text-decoration: none;
     color: black;
@@ -11,7 +13,7 @@
     margin: 2px;
     padding: 10px;
     background: #CCCBCA;
-}  
+}
 
 .basic-form {
     display: block;
@@ -25,3 +27,23 @@
     background: #bed6be6b;
 }
 
+@media screen and (max-width: 360px) and (max-height: 640px) {
+    .basic-form {
+        display: block;
+        width: 260px;
+        margin: 0 10px;
+        border: 2px solid;
+        height: 259px;
+        padding: 20px;
+        border-radius: 8px;
+        background: #bed6be6b;
+    }
+
+    label, input {
+        width: 166px;
+    }
+
+    select {
+        width: 166px;
+    }
+}
