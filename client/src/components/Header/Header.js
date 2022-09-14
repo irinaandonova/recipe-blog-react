@@ -25,10 +25,10 @@ const Header = () => {
                     :
                     <ul className='header-list'>
                         <li className='header-link'>
-                            <Link to="/:_id/liked-recipes" className='basic-btn'>Liked recipes</Link>
+                            <Link to="/liked-recipes" className='basic-btn'>Liked recipes</Link>
                         </li>
                         <li className='header-link'>
-                            <Link to="/:_id/my-recipes" className='basic-btn'>My recipes</Link>
+                            <Link to="/my-recipes" className='basic-btn'>My recipes</Link>
                         </li>
                         <li className='header-link'>
                             <Link to="/recipe/add/info" className='basic-btn'>Add recipe</Link>

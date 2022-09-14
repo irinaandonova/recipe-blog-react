@@ -26,18 +26,25 @@ header {
     text-decoration: none;
     color: #4b2591;
 }
+
 .logo:hover {
     color: #2c1557;
 }
+
 .right a {
     border: 2px solid;
 }
+
 .category-link {
     color: black;
     text-decoration: none;
     padding: 13px 100px 13px 90px;
     border-radius: 10px;
+}
 
+.category-link:hover {
+    padding: 16px 103px 16px 93px;
+    color: #2c1557;
 }
 .category-list {
     display: flex;
@@ -47,10 +54,7 @@ header {
     list-style: none;
     justify-content: space-evenly;
 }
-.category-link:hover {
-    color: black;
-    text-decoration: dotted;
-}
+
 .meat {
     background-color: #DB8C3D;
 }

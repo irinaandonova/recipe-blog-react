@@ -6,11 +6,11 @@ const Recipe = ({ recipe }) => {
         navigate(`/recipe/${recipe._id}`);
     }
     return(
-        <article className="recipe" onClick={navigateHandler}>
+        <article className={"recipe" + ' ' + recipe.category + '-article' } onClick={navigateHandler}>
             <article className='img-article'>
             <img src={recipe.image} className="dashboard-recipe-image"/>
             </article>
-            <p className="recipe-name">{recipe.name}</p>
+            <p className={"recipe-name" + ' ' + recipe.category + '-title'}>{recipe.name}</p>
         </article>
     )
 }
