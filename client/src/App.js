@@ -22,9 +22,9 @@ function App() {
           <Route path='/recipe/add/info' element={<AddRecipeInfo />} />
           <Route path='/recipe/add/ingredients' element={<AddIngredients />} />
           <Route path='/recipe/:_id' element={<Details />} />
-          <Route path='/:_id/my-recipes' element={<MyRecipes />} />
+          <Route path='/my-recipes' element={<MyRecipes />} />
           <Route path='/categories/:category' element={<Dashboard />} />
-          <Route path='/:_id/liked-recipes' element={<LikedRecipes />} />
+          <Route path='/liked-recipes' element={<LikedRecipes />} />
         </Routes>
       </AuthContextProvider>
     </div>
