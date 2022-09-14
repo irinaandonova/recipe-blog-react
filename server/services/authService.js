@@ -2,7 +2,6 @@ const authMiddleware = require('../middlewares/authMiddleware.js');
 const User = require('../models/User');
 
 const register = async (username, hashedPassword, email) => {
-    console.log(username, hashedPassword, email);
     try {
         const user = await new User({ username, password: hashedPassword, email });
         await user.save();

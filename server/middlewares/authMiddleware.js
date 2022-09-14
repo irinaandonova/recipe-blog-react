@@ -1,9 +1,9 @@
 const bcrypt = require('bcrypt');
 
-const hashedPassword = async({password, SALT}) => {
+const hashedPassword = async ({ password }) => {
     return await bcrypt.hash(password, 10)
 }
-const comparePassword = async(plainPassword, hashedPassword) => {
+const comparePassword = async (plainPassword, hashedPassword) => {
     return await bcrypt.compare(plainPassword, hashedPassword);
 }
 const authMiddleware = {

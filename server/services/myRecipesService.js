@@ -32,6 +32,7 @@ const deleteRecipe = async (_id, userId) => {
         const recipe = await Recipe.findById({ _id });
         if (recipe.userId.toString() === userId) {
             await Recipe.deleteOne({ _id });
+            
             return { status: 'ok' };
         }
         else {
