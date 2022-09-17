@@ -51,19 +51,20 @@
 }
 
 @media screen and (max-width: 769px) {
-   header {
-    background-color: aqua;
-   }
-   .logo {
-    padding: 0;
-   }
+    .logo {
+        padding: 0;
+    }
 }
 
-@media screen and (max-width: 710px){
-    header {
-        background-color: red;
-       }
-       .logo {
-        padding: 0;
-       }
+@media screen and (max-width: 360px) and (max-height: 640px) {
+    .recipes-section {
+        margin: 10px;
+        flex-wrap: wrap;
+    }
+
+    .recipe {
+        border: 2px solid;
+        padding: 10px;
+        margin: 5px;
+    }
 }

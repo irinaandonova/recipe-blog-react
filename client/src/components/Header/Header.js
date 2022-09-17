@@ -43,21 +43,20 @@ const Header = () => {
             </nav>
             <nav>
                 <ul className='category-list'>
-                    <li>
+                    <li className='category-li'>
                         <Link to="/categories/meat" className='category-link meat'>Recipes with meat</Link>
                     </li>
-                    <li>
+                    <li className='category-li'>
                         <Link to="/categories/fish" className='category-link fish'>Recipes with fish and seafood</Link>
 
                     </li>
-                    <li>
+                    <li className='category-li'>
                         <Link to="/categories/vegetarian" className='category-link vegetarian'>Vegeterian recipes</Link>
 
                     </li>
-                    <li>
+                    <li className='category-li'>
                         <Link to="/categories/dessert" className='category-link dessert'>Desserts</Link>
                     </li>
-
                 </ul>
             </nav>
         </header>
