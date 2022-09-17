@@ -7,6 +7,7 @@ const getRecipes = async (category) => {
         if (category) {
             recipes = recipes.filter(x => x.category === category);
         }
+
         return { status: 'ok', recipes };
     }
     catch (err) {
@@ -17,6 +18,7 @@ const getRecipes = async (category) => {
 const getOne = async (_id) => {
     try {
         const recipe = await Recipe.findById({ _id });
+
         return { status: 'ok', recipe };
     }
     catch (err) {
@@ -37,7 +39,6 @@ const createRecipe = async ({ name, userId, createdBy, portions, image, category
     }
 }
 const likeRecipe = async ({ userId, _id }) => {
-    console.log(userId, _id);
     try {
         const recipeInfo = await Recipe.findById({ _id });
         if (recipeInfo.userId.toString() === userId) {
@@ -56,6 +57,7 @@ const likeRecipe = async ({ userId, _id }) => {
                 recipeInfo.likes.splice(index, 1);
                 await recipeInfo.save();
                 const likes = recipeInfo.likes;
+
                 return { status: 'ok', likes }
             }
         }
@@ -68,7 +70,7 @@ const likeRecipe = async ({ userId, _id }) => {
 const getLikedRecipes = async (_id) => {
     try {
         const allRecipes = await Recipe.find({}).lean();
-        const likedRecipes = allRecipes.filter(x => x.likes = _id.toString());
+        const likedRecipes = allRecipes.filter(x => x.likes === _id.toString());
 
         return { status: 'ok', likedRecipes };
     }
@@ -81,16 +83,16 @@ const rateRecipe = async ({ recipeId, userId, rating }) => {
     try {
         const recipe = await Recipe.findById({ _id: recipeId });
 
-        
+
         const index = recipe.rating.findIndex(x => x.userId.toString() === userId);
         if (index === -1) {
             recipe.rating.push({ userId, rating });
         }
         else {
-            recipe.rating.splice(index, 1, {recipeId, userId, rating});
+            recipe.rating.splice(index, 1, { recipeId, userId, rating });
         }
-
         await recipe.save();
+
         return { status: 'ok', rating: recipe.rating };
     }
     catch (err) {

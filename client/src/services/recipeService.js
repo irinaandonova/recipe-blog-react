@@ -40,7 +40,7 @@ exports.getOne = async (_id) => {
     try {
         const response = await fetch(`${baseUrl}/details/${_id}`);
         let result = await response.json();
-        console.log(result);
+
         return result;
     }
     catch (err) {
@@ -48,7 +48,6 @@ exports.getOne = async (_id) => {
         return { status: 'err' };
     }
 }
-
 exports.likeRecipe = async ({ _id, userId }) => {
     try {
         const response = await fetch(`${baseUrl}/${_id}/like`, {
