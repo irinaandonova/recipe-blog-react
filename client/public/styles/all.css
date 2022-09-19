@@ -39,7 +39,8 @@
         background: #bed6be6b;
     }
 
-    label, input {
+    label,
+    input {
         width: 166px;
     }
 

@@ -1,8 +1,11 @@
 @import url('http://fonts.cdnfonts.com/css/athletic-outfit');
+
 .logo {
-    font-family: 'Athletic Outfit', sans-serif;                                            
+    font-family: 'Athletic Outfit', sans-serif;
 }
-.category-link, .upper-link .delete-btn {
+
+.category-link,
+.upper-link .delete-btn {
     font-family: 'Louis George Café', sans-serif;
     font-size: 20px;
     font-weight: bold;

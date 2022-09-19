@@ -4,17 +4,21 @@
     width: 15%;
     margin: 40px 40px;
 }
+
 .add-comment {
     border-top: 2px solid;
 }
+
 .comment-text-area {
     height: 100px;
 }
+
 .comment-textarea {
     height: 100px;
     border-radius: 10px;
 
 }
+
 .single-comment-article {
     background-color: #cccbca30;
     width: 88%;
@@ -22,10 +26,12 @@
     padding: 10px 20px;
     border-radius: 20px;
 }
+
 .user-comment {
     border-bottom: 2px solid gray;
     padding-left: 20px;
 }
+
 .comment-created-at {
     text-align: end;
 }
