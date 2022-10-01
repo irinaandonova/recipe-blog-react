@@ -78,9 +78,15 @@ header {
     }
 }
 
-@media screen and (max-width: 360px) and (max-height: 640px) {
+@media screen and (max-height: 600px)  and (max-width: 425px) {
+    header {
+        width: 100%;
+        margin: 0;
+    }
+
     .upper-navbar {
         display: block;
+        margin: 10px;
     }
 
     .logo {
@@ -93,21 +99,8 @@ header {
     }
 
     .category-link {
+        display: inherit;
+        width: 261px;
         padding: 10px;
-    }
-
-    .category-li {
-        height: 50px;
-    }
-
-    .header-list {
-        display: inline-block;
-        margin-top: 10px;
-
-    }
-
-    .header-link {
-        width: 100px;
-        margin: 20px;
     }
 }
